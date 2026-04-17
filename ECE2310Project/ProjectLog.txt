@@ -1,3 +1,7 @@
 ﻿Please write a short discription of the work you did with the date included
 
-4/16 An : Created project, added windows form
+4/16 An :
+	Created project
+	added windows form
+	added Event class
+		Added parameter and methods for getting event time data
