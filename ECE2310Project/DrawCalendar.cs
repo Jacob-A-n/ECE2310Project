@@ -18,6 +18,8 @@ namespace ECE2310Project
         private int year;
         private int month;
         private int[] calendarNumbers = new int[42];
+        public int StartOfMonth = 0; { get; set; }//used outside to display events in windows form (not yet implemented) 
+        public int EndOfMonth = 0; { get; set; }
 
         public DrawCalendar(int year, int month)
         {
@@ -46,24 +48,24 @@ namespace ECE2310Project
         //updates list to use to display dates
         private void ArrangeCalendar(DayOfWeek day)
         {
-            int startOfMonth = 0;
-            int endOfMonth = 0;
+            StartOfMonth = 0;
+            EndOfMonth = 0;
 
             switch (day.ToString()) //finds which day is start of the month
             {
-                case ("Sunday"):  startOfMonth = 0; break;
-                case ("Monday"): startOfMonth = 1; break;
-                case ("Tuesday"): startOfMonth = 2; break;
-                case ("Wednesday"):  startOfMonth = 3; break;
-                case ("Thursday"): startOfMonth = 4; break;
-                case ("Friday"): startOfMonth = 5; break;
-                case ("Saturday"): startOfMonth = 6; break;
+                case ("Sunday"): StartOfMonth = 0; break;
+                case ("Monday"): StartOfMonth = 1; break;
+                case ("Tuesday"): StartOfMonth = 2; break;
+                case ("Wednesday"):  StartOfMonth = 3; break;
+                case ("Thursday"): StartOfMonth = 4; break;
+                case ("Friday"): StartOfMonth = 5; break;
+                case ("Saturday"): StartOfMonth = 6; break;
             }
 
-            endOfMonth = startOfMonth + Cal.GetDaysInMonth(year, month);
+            EndOfMonth = StartOfMonth + Cal.GetDaysInMonth(year, month);
 
             DateWindow = Cal.AddDays(DateWindow, -1); //gets last month //cannot use Cal.GetDaysInMonth() directly incase month was janurary; causes error
-            for (int i = Cal.GetDaysInMonth(DateWindow.Year, DateWindow.Month), j = startOfMonth - 1; i > Cal.GetDaysInMonth(DateWindow.Year, DateWindow.Month) - startOfMonth; i--, j--)
+            for (int i = Cal.GetDaysInMonth(DateWindow.Year, DateWindow.Month), j = StartOfMonth - 1; i > Cal.GetDaysInMonth(DateWindow.Year, DateWindow.Month) - StartOfMonth; i--, j--)
             {
                 calendarNumbers[j] = i;
             }
@@ -71,10 +73,10 @@ namespace ECE2310Project
 
             for (int i = 0; i < Cal.GetDaysInMonth(DateWindow.Year, DateWindow.Month); i++)
             {
-                calendarNumbers[startOfMonth + i] = i + 1;
+                calendarNumbers[StartOfMonth + i] = i + 1;
             }
 
-            for (int i = endOfMonth, j = 1 ; i < calendarNumbers.Length; i++, j++)
+            for (int i = EndOfMonth, j = 1 ; i < calendarNumbers.Length; i++, j++)
             {
                 calendarNumbers[i] = j;
             }
