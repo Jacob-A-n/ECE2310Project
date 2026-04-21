@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace ECE2310Project
 {
-    public class Event
+    public class CalendarEvent //base class for Events
     {
         public DateTime DateInfo { get; set; }//  https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-10.0 regarding DateTime class
         // public DateTime(int year, int month, int day, int hour, int minute, int second, System.Globalization.Calendar calendar); // constructor for DateTime
@@ -17,7 +17,7 @@ namespace ECE2310Project
         public string Name { get; set; }
         public string Discription { get; set; }
 
-        public Event(string name, int year, int month, int day, int hour = 0, int minute = 0, string discription = "")
+        public CalendarEvent(string name, int year, int month, int day, int hour = 0, int minute = 0, string discription = "")
         {
             try
             {
@@ -32,7 +32,7 @@ namespace ECE2310Project
         }
 
         public int GetDayOfMonth() => Cal.GetDayOfMonth(DateInfo);
-        public int GetDayOfWeek() => Cal.GetDayOfMonth(DateInfo);
+        public string GetDayOfWeek() => Cal.GetDayOfWeek(DateInfo).ToString();
         public int GetDatOfYear() => Cal.GetDayOfYear(DateInfo);
         public int GetDaysInMonth() => Cal.GetDaysInMonth(DateInfo.Year,DateInfo.Month);
         public int GetDaysInYear() => Cal.GetDaysInYear(DateInfo.Year);

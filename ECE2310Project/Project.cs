@@ -10,6 +10,16 @@ namespace ECE2310Project
             //Initalizes GUI
             Form windowForm = new Form();
             windowForm.ShowDialog();
+
+            //debugging and testing
+            CalendarEvent ev = new CalendarEvent("name",2026, 4, 16, 10, 0); 
+            Console.WriteLine(ev.GetDayOfWeek() + "\n\n");
+
+            DrawCalendar drawCalendar = new DrawCalendar(2026,4);
+            Console.WriteLine(drawCalendar + "\n\n");
+
+            DrawCalendar drawCalendar1 = new DrawCalendar(2026, 2);
+            Console.WriteLine(drawCalendar1);
         }
     }
 }

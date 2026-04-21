@@ -5,3 +5,6 @@
 	added windows form
 	added Event class
 		Added parameter and methods for getting event time data
+4/17 An : 
+	Created a system that takes a date and outputs a array of days for a calendar with a 7*6 grid where the first row is always the first week similar to how windows displays calendar in the task bar
+	This update is in the form of DrawCalendar.cs
