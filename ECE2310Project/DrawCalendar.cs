@@ -18,8 +18,8 @@ namespace ECE2310Project
         private int year;
         private int month;
         private int[] calendarNumbers = new int[42];
-        public int StartOfMonth = 0; { get; set; }//used outside to display events in windows form (not yet implemented) 
-        public int EndOfMonth = 0; { get; set; }
+        public int StartOfMonth { get; set; }
+        public int EndOfMonth { get; set; }
 
         public DrawCalendar(int year, int month)
         {
