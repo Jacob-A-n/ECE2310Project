@@ -15,6 +15,8 @@ namespace ECE2310Project
         public Form()
         {
             InitializeComponent();
+
+            Console.WriteLine("this is from form class");
         }
     }
 }
