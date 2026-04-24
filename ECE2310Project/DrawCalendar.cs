@@ -17,7 +17,8 @@ namespace ECE2310Project
         private Calendar Cal = CultureInfo.InvariantCulture.Calendar;
         private int year;
         private int month;
-        private int[] calendarNumbers = new int[42];
+        public int[] calendarNumbers = new int[42];
+        public bool[] isDayOfMonth = new bool[42];
         public int StartOfMonth { get; set; }
         public int EndOfMonth { get; set; }
 
@@ -46,10 +47,14 @@ namespace ECE2310Project
         }
 
         //updates list to use to display dates
-        private void ArrangeCalendar(DayOfWeek day)
+        public void ArrangeCalendar(DayOfWeek day)
         {
             StartOfMonth = 0;
             EndOfMonth = 0;
+            for (int i = 0; i < isDayOfMonth.Length; i++)
+            {
+                isDayOfMonth[i] = false;
+            }
 
             switch (day.ToString()) //finds which day is start of the month
             {
@@ -74,6 +79,7 @@ namespace ECE2310Project
             for (int i = 0; i < Cal.GetDaysInMonth(DateWindow.Year, DateWindow.Month); i++)
             {
                 calendarNumbers[StartOfMonth + i] = i + 1;
+                isDayOfMonth[StartOfMonth + i] = true;
             }
 
             for (int i = EndOfMonth, j = 1 ; i < calendarNumbers.Length; i++, j++)
