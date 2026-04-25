@@ -15,8 +15,6 @@ namespace ECE2310Project
     {
         public DateTime DateWindow { get; set; }
         private Calendar Cal = CultureInfo.InvariantCulture.Calendar;
-        private int year;
-        private int month;
         public int[] calendarNumbers = new int[42];
         public bool[] isDayOfMonth = new bool[42];
         public int StartOfMonth { get; set; }
@@ -25,8 +23,6 @@ namespace ECE2310Project
         public DrawCalendar(int year, int month)
         {
             DateWindow = new DateTime(year, month, 1, 0, 0, 0, new GregorianCalendar());
-            this.year = year;
-            this.month = month;
         }
         
         public DrawCalendar(DateTime dateWindow)
@@ -42,8 +38,6 @@ namespace ECE2310Project
         public void Update(int year, int month)
         {
             DateWindow = new DateTime(year, month, 1, 0, 0, 0, new GregorianCalendar());
-            this.year = year;
-            this.month = month;
         }
 
         //updates list to use to display dates
@@ -67,7 +61,7 @@ namespace ECE2310Project
                 case ("Saturday"): StartOfMonth = 6; break;
             }
 
-            EndOfMonth = StartOfMonth + Cal.GetDaysInMonth(year, month);
+            EndOfMonth = StartOfMonth + Cal.GetDaysInMonth(DateWindow.Year, DateWindow.Month);
 
             DateWindow = Cal.AddDays(DateWindow, -1); //gets last month //cannot use Cal.GetDaysInMonth() directly incase month was janurary; causes error
             for (int i = Cal.GetDaysInMonth(DateWindow.Year, DateWindow.Month), j = StartOfMonth - 1; i > Cal.GetDaysInMonth(DateWindow.Year, DateWindow.Month) - StartOfMonth; i--, j--)
@@ -86,6 +80,16 @@ namespace ECE2310Project
             {
                 calendarNumbers[i] = j;
             }
+        }
+
+        public void AddMonth()
+        {
+            DateWindow = Cal.AddMonths(DateWindow, 1);
+        }
+
+        public void SubtractMonth()
+        {
+            DateWindow = Cal.AddMonths(DateWindow, -1);
         }
 
         public override string ToString()
@@ -109,7 +113,7 @@ namespace ECE2310Project
                 case (12): month = "December"; break;
             }
 
-            string output = $"{month} {year}\nS  M  T  W  T  F  S\n";
+            string output = $"{month} {DateWindow.Year}\nS  M  T  W  T  F  S\n";
             for (int i = 0; i < calendarNumbers.Length; i++) 
             {
                 if (calendarNumbers[i] > 9)
