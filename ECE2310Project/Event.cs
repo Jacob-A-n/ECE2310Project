@@ -25,7 +25,7 @@ namespace ECE2310Project
             }
             catch (ArgumentOutOfRangeException)
             {
-                //out of range argument code
+                Console.WriteLine("Out of range argument for CalendarEvent");
             }
             Name = name;
             Discription = discription;
