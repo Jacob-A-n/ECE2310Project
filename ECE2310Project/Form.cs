@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +21,7 @@ namespace ECE2310Project
         private Calendar Cal = CultureInfo.InvariantCulture.Calendar;
         private List<CalendarEvent> events = new List<CalendarEvent>();
         private List<RecurringEvent> recurringEvents = new List<RecurringEvent>();
+        private List<CalendarEvent> eventTracker = new List<CalendarEvent>();
         private DrawCalendar drawCalendar = new DrawCalendar();
 
         public Form()
@@ -30,6 +32,8 @@ namespace ECE2310Project
             labelEvent = new Label[] { labelEvent0, labelEvent1, labelEvent2, labelEvent3, labelEvent4, labelEvent5, labelEvent6, labelEvent7, labelEvent8, labelEvent9, labelEvent10, labelEvent11, labelEvent12, labelEvent13, labelEvent14, labelEvent15, labelEvent16, labelEvent17, labelEvent18, labelEvent19, labelEvent20, labelEvent21, labelEvent22, labelEvent23, labelEvent24, labelEvent25, labelEvent26, labelEvent27, labelEvent28, labelEvent29, labelEvent30, labelEvent31, labelEvent32, labelEvent33, labelEvent34, labelEvent35, labelEvent36, labelEvent37, labelEvent38, labelEvent39, labelEvent40, labelEvent41 };
             year = drawCalendar.DateWindow.Year;
             month = drawCalendar.DateWindow.Month;
+            numericUpDownTimeHour.Value = DateTime.Now.Hour;
+            numericUpDownTimeMinute.Value = DateTime.Now.Minute;
 
             //some national holidays
             recurringEvents.Add(new RecurringEvent("New Year's Day", year, 1, 1));
@@ -283,7 +287,7 @@ namespace ECE2310Project
             }
         }
 
-        private void Notification()
+        private void Notification() //also handles deleting events that are 5 or more days old
         {
             for (int i = events.Count - 1; i >= 0; i--)
             {
@@ -292,20 +296,37 @@ namespace ECE2310Project
                     if (events[i].Discription == "")
                     {
                         events[i].NotificationSent = true;
-                        MessageBox.Show("Event: " + events[i].Name , "Event Notification");
+                        MessageBox.Show("Event: " + events[i].Name , "Event Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
                         events[i].NotificationSent = true;
-                        MessageBox.Show("Event: " + events[i].Name + "\nDescription: " + events[i].Discription, "Event Notification");
+                        MessageBox.Show("Event: " + events[i].Name + "\nDescription: " + events[i].Discription, "Event Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+
                     if (checkBoxDeleteEventNow.Checked)
                     {
+                        for (int j = eventTracker.Count - 1; j >= 0; j--)
+                        {
+                            if (DateTime.Compare(eventTracker[j].DateInfo, events[i].DateInfo) == 0 && eventTracker[j].Name == events[i].Name)
+                            {
+                                eventTracker.RemoveAt(j);
+                            }
+                        }
+
                         events.RemoveAt(i);
                     }
                 }
                 else if (DateTime.Compare(events[i].DateInfo, Cal.AddDays(DateTime.Now, -5)) <= 0) //removes events that are 5 days or more older
                 {
+                    for (int j = eventTracker.Count - 1; j >= 0; j--)
+                    {
+                        if (DateTime.Compare(eventTracker[j].DateInfo, events[i].DateInfo) == 0 && eventTracker[j].Name == events[i].Name)
+                        {
+                            eventTracker.RemoveAt(j);
+                        }
+                    }
+
                     events.RemoveAt(i);
                 }
             }
@@ -314,20 +335,106 @@ namespace ECE2310Project
             {
                 if (DateTime.Compare(recurringEvents[i].DateInfo, DateTime.Now) <= 0)
                 {
+                    for (int j = eventTracker.Count - 1; j >= 0; j--)
+                    {
+                        if (DateTime.Compare(eventTracker[j].DateInfo, recurringEvents[i].DateInfo) == 0 && eventTracker[j].Name == recurringEvents[i].Name)
+                        {
+                            eventTracker[j].DateInfo = Cal.AddYears(eventTracker[j].DateInfo, 1);
+                        }
+                    }
+
                     if (recurringEvents[i].Discription == "")
                     {
                         recurringEvents[i].UpdateNotificationTime();
-                        MessageBox.Show("Event: " + recurringEvents[i].Name, "Event Notification");
+                        MessageBox.Show("Event: " + recurringEvents[i].Name, "Event Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
                         recurringEvents[i].UpdateNotificationTime();
-                        MessageBox.Show("Event: " + recurringEvents[i].Name + "\nDescription: " + recurringEvents[i].Discription, "Event Notification");
+                        MessageBox.Show("Event: " + recurringEvents[i].Name + "\nDescription: " + recurringEvents[i].Discription, "Event Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+
+                    UpdateList(); //updates times on the list
                 }
             }
         }
 
+        private void UpdateList()
+        {
+            listBoxEvents.Items.Clear();
+            for (int i = 0; i < eventTracker.Count; i++)
+            {
+                listBoxEvents.Items.Add(eventTracker[i].Name + " on " + eventTracker[i].DateInfo.ToShortDateString());
+            }
+        }
+
+        private void AddEvent()
+        {
+            if (DateTime.Compare(dateTimePickerEventDate.Value, DateTime.Now) < 0 && !checkBoxMakePastEvents.Checked)
+            {
+                MessageBox.Show("The date of the event cannot be in the past. Please select a valid date or change the setting to allow past dates.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            bool copy = false;
+            for (int i = 0; i < eventTracker.Count; i++)
+            {
+                if (dateTimePickerEventDate.Value.Year == eventTracker[i].DateInfo.Year && dateTimePickerEventDate.Value.Month == eventTracker[i].DateInfo.Month && dateTimePickerEventDate.Value.Day == eventTracker[i].DateInfo.Day && numericUpDownTimeHour.Value == eventTracker[i].DateInfo.Hour && numericUpDownTimeMinute.Value == eventTracker[i].DateInfo.Minute && eventTracker[i].Name == textBoxEventName.Text)
+                {
+                    copy = true;
+                    break;
+                }
+            }
+
+            if (copy)
+            {
+                MessageBox.Show("An event with the same name and date already exists. Please change the name or date of the event.", "Duplicate Event", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (checkBoxRecurringEvent.Checked)
+            {
+                recurringEvents.Add(new RecurringEvent(textBoxEventName.Text, dateTimePickerEventDate.Value.Year, dateTimePickerEventDate.Value.Month, dateTimePickerEventDate.Value.Day, (int)numericUpDownTimeHour.Value, (int)numericUpDownTimeMinute.Value, textBoxEventDecription.Text));
+            }
+            else
+            {
+                events.Add(new CalendarEvent(textBoxEventName.Text, dateTimePickerEventDate.Value.Year, dateTimePickerEventDate.Value.Month, dateTimePickerEventDate.Value.Day, (int)numericUpDownTimeHour.Value, (int)numericUpDownTimeMinute.Value, textBoxEventDecription.Text));
+            }
+
+            eventTracker.Add(new CalendarEvent(textBoxEventName.Text, dateTimePickerEventDate.Value.Year, dateTimePickerEventDate.Value.Month, dateTimePickerEventDate.Value.Day, (int)numericUpDownTimeHour.Value, (int)numericUpDownTimeMinute.Value, textBoxEventDecription.Text));
+            BuildCalendar(drawCalendar);
+            buttonCreateEvent.Enabled = false;
+            textBoxEventName.Text = "";
+            textBoxEventDecription.Text = "";
+            checkBoxRecurringEvent.Checked = false;
+            UpdateList();
+        }
+
+        private void DeleteEvent()
+        {
+            if (listBoxEvents.SelectedIndex >= 0)//something is selected
+            {
+                for (int i = events.Count - 1; i >= 0; i--)
+                {
+                    if (DateTime.Compare(events[i].DateInfo, eventTracker[listBoxEvents.SelectedIndex].DateInfo) == 0 && events[i].Name == eventTracker[listBoxEvents.SelectedIndex].Name)
+                    {
+                        events.RemoveAt(i);
+                    }
+                }
+                for (int j = recurringEvents.Count - 1; j >= 0; j--)
+                {
+                    if (DateTime.Compare(recurringEvents[j].DateInfo, eventTracker[listBoxEvents.SelectedIndex].DateInfo) == 0 && recurringEvents[j].Name == eventTracker[listBoxEvents.SelectedIndex].Name)
+                    {
+                        recurringEvents.RemoveAt(j);
+                    }
+                }
+                eventTracker.RemoveAt(listBoxEvents.SelectedIndex);
+                UpdateList();
+                BuildCalendar(drawCalendar);
+                labelDescription.Text = "";
+                buttonDelete.Enabled = false;
+            }
+        }
 
         //ALL EVENT TRIGGERS BELOW
         private void buttonRedcedeMonth_Click(object sender, EventArgs e)
@@ -365,19 +472,7 @@ namespace ECE2310Project
 
         private void buttonCreateEvent_Click(object sender, EventArgs e)
         {
-            if (checkBoxRecurringEvent.Checked)
-            {
-                recurringEvents.Add(new RecurringEvent(textBoxEventName.Text, dateTimePickerEventDate.Value.Year, dateTimePickerEventDate.Value.Month, dateTimePickerEventDate.Value.Day, (int)numericUpDownTimeHour.Value, (int)numericUpDownTimeMinute.Value, textBoxEventDecription.Text));
-            }
-            else
-            {
-                events.Add(new CalendarEvent(textBoxEventName.Text, dateTimePickerEventDate.Value.Year, dateTimePickerEventDate.Value.Month, dateTimePickerEventDate.Value.Day, (int)numericUpDownTimeHour.Value, (int)numericUpDownTimeMinute.Value, textBoxEventDecription.Text));
-            }
-            BuildCalendar(drawCalendar);
-            buttonCreateEvent.Enabled = false;
-            textBoxEventName.Text = "";
-            textBoxEventDecription.Text = "";
-            checkBoxRecurringEvent.Checked = false;
+            AddEvent();
         }
 
         private void textBoxEventName_TextChanged(object sender, EventArgs e)
@@ -416,6 +511,30 @@ namespace ECE2310Project
         {
             Notification();
             BuildCalendar(drawCalendar);
+        }
+
+        private void listBoxEvents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxEvents.SelectedIndex >= 0)//something is selected
+            {
+                labelDescription.Text = eventTracker[listBoxEvents.SelectedIndex].Discription;
+                buttonDelete.Enabled = true;
+            }
+            else if (listBoxEvents.SelectedIndex < 0)
+            {
+                labelDescription.Text = "";
+                buttonDelete.Enabled = false;
+            }
+        }
+
+        private void tabControlInCalendar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateList();
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            DeleteEvent();
         }
     }
 }

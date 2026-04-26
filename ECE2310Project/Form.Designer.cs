@@ -33,7 +33,11 @@
             this.tabPageCalendar = new System.Windows.Forms.TabPage();
             this.tabControlInCalendar = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.buttonGoTo = new System.Windows.Forms.Button();
+            this.dateTimePickerGoTo = new System.Windows.Forms.DateTimePicker();
             this.groupBoxCreatCalendar = new System.Windows.Forms.GroupBox();
+            this.groupBoxProperties = new System.Windows.Forms.GroupBox();
+            this.checkBoxRecurringEvent = new System.Windows.Forms.CheckBox();
             this.buttonCreateEvent = new System.Windows.Forms.Button();
             this.labelCreateEvent6 = new System.Windows.Forms.Label();
             this.labelCreateEvent5 = new System.Windows.Forms.Label();
@@ -47,6 +51,16 @@
             this.labelCreateEvent1 = new System.Windows.Forms.Label();
             this.textBoxEventName = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBoxDeleteEventNow = new System.Windows.Forms.CheckBox();
+            this.groupBoxAppearance = new System.Windows.Forms.GroupBox();
+            this.checkBoxHideEvents = new System.Windows.Forms.CheckBox();
+            this.checkBoxHideDays = new System.Windows.Forms.CheckBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.buttonDelete = new System.Windows.Forms.Button();
+            this.labelDescription = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.listBoxEvents = new System.Windows.Forms.ListBox();
             this.labelEvent41 = new System.Windows.Forms.Label();
             this.labelDay41 = new System.Windows.Forms.Label();
             this.labelEvent40 = new System.Windows.Forms.Label();
@@ -141,28 +155,20 @@
             this.labelDayLabel2 = new System.Windows.Forms.Label();
             this.labelDayLabel1 = new System.Windows.Forms.Label();
             this.textBoxMonth = new System.Windows.Forms.TextBox();
-            this.groupBoxProperties = new System.Windows.Forms.GroupBox();
-            this.checkBoxRecurringEvent = new System.Windows.Forms.CheckBox();
-            this.dateTimePickerGoTo = new System.Windows.Forms.DateTimePicker();
-            this.buttonGoTo = new System.Windows.Forms.Button();
-            this.groupBoxAppearance = new System.Windows.Forms.GroupBox();
-            this.checkBoxHideDays = new System.Windows.Forms.CheckBox();
-            this.checkBoxHideEvents = new System.Windows.Forms.CheckBox();
             this.timerCalendar = new System.Windows.Forms.Timer(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBoxDeleteEventNow = new System.Windows.Forms.CheckBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.checkBoxMakePastEvents = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabPageCalendar.SuspendLayout();
             this.tabControlInCalendar.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBoxCreatCalendar.SuspendLayout();
+            this.groupBoxProperties.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeMinute)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeHour)).BeginInit();
             this.tabPage2.SuspendLayout();
-            this.groupBoxProperties.SuspendLayout();
-            this.groupBoxAppearance.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBoxAppearance.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -292,6 +298,7 @@
             this.tabControlInCalendar.SelectedIndex = 0;
             this.tabControlInCalendar.Size = new System.Drawing.Size(260, 583);
             this.tabControlInCalendar.TabIndex = 96;
+            this.tabControlInCalendar.SelectedIndexChanged += new System.EventHandler(this.tabControlInCalendar_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -305,6 +312,25 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Create Event";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // buttonGoTo
+            // 
+            this.buttonGoTo.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold);
+            this.buttonGoTo.Location = new System.Drawing.Point(22, 461);
+            this.buttonGoTo.Name = "buttonGoTo";
+            this.buttonGoTo.Size = new System.Drawing.Size(197, 53);
+            this.buttonGoTo.TabIndex = 15;
+            this.buttonGoTo.Text = "Go To";
+            this.buttonGoTo.UseVisualStyleBackColor = true;
+            this.buttonGoTo.Click += new System.EventHandler(this.buttonGoTo_Click);
+            // 
+            // dateTimePickerGoTo
+            // 
+            this.dateTimePickerGoTo.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F);
+            this.dateTimePickerGoTo.Location = new System.Drawing.Point(12, 433);
+            this.dateTimePickerGoTo.Name = "dateTimePickerGoTo";
+            this.dateTimePickerGoTo.Size = new System.Drawing.Size(225, 22);
+            this.dateTimePickerGoTo.TabIndex = 15;
             // 
             // groupBoxCreatCalendar
             // 
@@ -328,6 +354,27 @@
             this.groupBoxCreatCalendar.TabIndex = 95;
             this.groupBoxCreatCalendar.TabStop = false;
             this.groupBoxCreatCalendar.Text = "Create Event";
+            // 
+            // groupBoxProperties
+            // 
+            this.groupBoxProperties.Controls.Add(this.checkBoxRecurringEvent);
+            this.groupBoxProperties.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.groupBoxProperties.Location = new System.Drawing.Point(10, 281);
+            this.groupBoxProperties.Name = "groupBoxProperties";
+            this.groupBoxProperties.Size = new System.Drawing.Size(221, 55);
+            this.groupBoxProperties.TabIndex = 14;
+            this.groupBoxProperties.TabStop = false;
+            this.groupBoxProperties.Text = "Properties";
+            // 
+            // checkBoxRecurringEvent
+            // 
+            this.checkBoxRecurringEvent.AutoSize = true;
+            this.checkBoxRecurringEvent.Location = new System.Drawing.Point(6, 23);
+            this.checkBoxRecurringEvent.Name = "checkBoxRecurringEvent";
+            this.checkBoxRecurringEvent.Size = new System.Drawing.Size(110, 23);
+            this.checkBoxRecurringEvent.TabIndex = 0;
+            this.checkBoxRecurringEvent.Text = "Repeat yearly";
+            this.checkBoxRecurringEvent.UseVisualStyleBackColor = true;
             // 
             // buttonCreateEvent
             // 
@@ -466,6 +513,116 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.checkBoxMakePastEvents);
+            this.groupBox1.Controls.Add(this.checkBoxDeleteEventNow);
+            this.groupBox1.Location = new System.Drawing.Point(9, 87);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(240, 70);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Notifications";
+            // 
+            // checkBoxDeleteEventNow
+            // 
+            this.checkBoxDeleteEventNow.AutoSize = true;
+            this.checkBoxDeleteEventNow.Location = new System.Drawing.Point(6, 19);
+            this.checkBoxDeleteEventNow.Name = "checkBoxDeleteEventNow";
+            this.checkBoxDeleteEventNow.Size = new System.Drawing.Size(229, 17);
+            this.checkBoxDeleteEventNow.TabIndex = 0;
+            this.checkBoxDeleteEventNow.Text = "Delete Events as soon as nofication is sent";
+            this.checkBoxDeleteEventNow.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxAppearance
+            // 
+            this.groupBoxAppearance.Controls.Add(this.checkBoxHideEvents);
+            this.groupBoxAppearance.Controls.Add(this.checkBoxHideDays);
+            this.groupBoxAppearance.Location = new System.Drawing.Point(6, 11);
+            this.groupBoxAppearance.Name = "groupBoxAppearance";
+            this.groupBoxAppearance.Size = new System.Drawing.Size(240, 70);
+            this.groupBoxAppearance.TabIndex = 0;
+            this.groupBoxAppearance.TabStop = false;
+            this.groupBoxAppearance.Text = "Appearance";
+            // 
+            // checkBoxHideEvents
+            // 
+            this.checkBoxHideEvents.AutoSize = true;
+            this.checkBoxHideEvents.Checked = true;
+            this.checkBoxHideEvents.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxHideEvents.Location = new System.Drawing.Point(6, 42);
+            this.checkBoxHideEvents.Name = "checkBoxHideEvents";
+            this.checkBoxHideEvents.Size = new System.Drawing.Size(144, 17);
+            this.checkBoxHideEvents.TabIndex = 1;
+            this.checkBoxHideEvents.Text = "Hide events not in month";
+            this.checkBoxHideEvents.UseVisualStyleBackColor = true;
+            this.checkBoxHideEvents.CheckedChanged += new System.EventHandler(this.checkBoxHideEvents_CheckedChanged);
+            // 
+            // checkBoxHideDays
+            // 
+            this.checkBoxHideDays.AutoSize = true;
+            this.checkBoxHideDays.Checked = true;
+            this.checkBoxHideDays.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxHideDays.Location = new System.Drawing.Point(6, 19);
+            this.checkBoxHideDays.Name = "checkBoxHideDays";
+            this.checkBoxHideDays.Size = new System.Drawing.Size(134, 17);
+            this.checkBoxHideDays.TabIndex = 0;
+            this.checkBoxHideDays.Text = "Hide days not in month";
+            this.checkBoxHideDays.UseVisualStyleBackColor = true;
+            this.checkBoxHideDays.CheckedChanged += new System.EventHandler(this.checkBoxHideDays_CheckedChanged);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.buttonDelete);
+            this.tabPage3.Controls.Add(this.labelDescription);
+            this.tabPage3.Controls.Add(this.label1);
+            this.tabPage3.Controls.Add(this.listBoxEvents);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(252, 557);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Events";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.BackColor = System.Drawing.Color.Firebrick;
+            this.buttonDelete.Enabled = false;
+            this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDelete.Location = new System.Drawing.Point(8, 404);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(235, 105);
+            this.buttonDelete.TabIndex = 3;
+            this.buttonDelete.Text = "Delete";
+            this.buttonDelete.UseVisualStyleBackColor = false;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
+            // labelDescription
+            // 
+            this.labelDescription.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.labelDescription.Location = new System.Drawing.Point(4, 243);
+            this.labelDescription.Name = "labelDescription";
+            this.labelDescription.Size = new System.Drawing.Size(240, 128);
+            this.labelDescription.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 220);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Description";
+            // 
+            // listBoxEvents
+            // 
+            this.listBoxEvents.FormattingEnabled = true;
+            this.listBoxEvents.Location = new System.Drawing.Point(4, 18);
+            this.listBoxEvents.Name = "listBoxEvents";
+            this.listBoxEvents.Size = new System.Drawing.Size(239, 199);
+            this.listBoxEvents.TabIndex = 0;
+            this.listBoxEvents.SelectedIndexChanged += new System.EventHandler(this.listBoxEvents_SelectedIndexChanged);
             // 
             // labelEvent41
             // 
@@ -1333,117 +1490,21 @@
             this.textBoxMonth.Text = "April, 2026";
             this.textBoxMonth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // groupBoxProperties
-            // 
-            this.groupBoxProperties.Controls.Add(this.checkBoxRecurringEvent);
-            this.groupBoxProperties.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.groupBoxProperties.Location = new System.Drawing.Point(10, 281);
-            this.groupBoxProperties.Name = "groupBoxProperties";
-            this.groupBoxProperties.Size = new System.Drawing.Size(221, 55);
-            this.groupBoxProperties.TabIndex = 14;
-            this.groupBoxProperties.TabStop = false;
-            this.groupBoxProperties.Text = "Properties";
-            // 
-            // checkBoxRecurringEvent
-            // 
-            this.checkBoxRecurringEvent.AutoSize = true;
-            this.checkBoxRecurringEvent.Location = new System.Drawing.Point(6, 23);
-            this.checkBoxRecurringEvent.Name = "checkBoxRecurringEvent";
-            this.checkBoxRecurringEvent.Size = new System.Drawing.Size(110, 23);
-            this.checkBoxRecurringEvent.TabIndex = 0;
-            this.checkBoxRecurringEvent.Text = "Repeat yearly";
-            this.checkBoxRecurringEvent.UseVisualStyleBackColor = true;
-            // 
-            // dateTimePickerGoTo
-            // 
-            this.dateTimePickerGoTo.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F);
-            this.dateTimePickerGoTo.Location = new System.Drawing.Point(12, 433);
-            this.dateTimePickerGoTo.Name = "dateTimePickerGoTo";
-            this.dateTimePickerGoTo.Size = new System.Drawing.Size(225, 22);
-            this.dateTimePickerGoTo.TabIndex = 15;
-            // 
-            // buttonGoTo
-            // 
-            this.buttonGoTo.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold);
-            this.buttonGoTo.Location = new System.Drawing.Point(22, 461);
-            this.buttonGoTo.Name = "buttonGoTo";
-            this.buttonGoTo.Size = new System.Drawing.Size(197, 53);
-            this.buttonGoTo.TabIndex = 15;
-            this.buttonGoTo.Text = "Go To";
-            this.buttonGoTo.UseVisualStyleBackColor = true;
-            this.buttonGoTo.Click += new System.EventHandler(this.buttonGoTo_Click);
-            // 
-            // groupBoxAppearance
-            // 
-            this.groupBoxAppearance.Controls.Add(this.checkBoxHideEvents);
-            this.groupBoxAppearance.Controls.Add(this.checkBoxHideDays);
-            this.groupBoxAppearance.Location = new System.Drawing.Point(6, 11);
-            this.groupBoxAppearance.Name = "groupBoxAppearance";
-            this.groupBoxAppearance.Size = new System.Drawing.Size(240, 70);
-            this.groupBoxAppearance.TabIndex = 0;
-            this.groupBoxAppearance.TabStop = false;
-            this.groupBoxAppearance.Text = "Appearance";
-            // 
-            // checkBoxHideDays
-            // 
-            this.checkBoxHideDays.AutoSize = true;
-            this.checkBoxHideDays.Checked = true;
-            this.checkBoxHideDays.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxHideDays.Location = new System.Drawing.Point(6, 19);
-            this.checkBoxHideDays.Name = "checkBoxHideDays";
-            this.checkBoxHideDays.Size = new System.Drawing.Size(134, 17);
-            this.checkBoxHideDays.TabIndex = 0;
-            this.checkBoxHideDays.Text = "Hide days not in month";
-            this.checkBoxHideDays.UseVisualStyleBackColor = true;
-            this.checkBoxHideDays.CheckedChanged += new System.EventHandler(this.checkBoxHideDays_CheckedChanged);
-            // 
-            // checkBoxHideEvents
-            // 
-            this.checkBoxHideEvents.AutoSize = true;
-            this.checkBoxHideEvents.Location = new System.Drawing.Point(6, 42);
-            this.checkBoxHideEvents.Name = "checkBoxHideEvents";
-            this.checkBoxHideEvents.Size = new System.Drawing.Size(144, 17);
-            this.checkBoxHideEvents.TabIndex = 1;
-            this.checkBoxHideEvents.Text = "Hide events not in month";
-            this.checkBoxHideEvents.UseVisualStyleBackColor = true;
-            this.checkBoxHideEvents.CheckedChanged += new System.EventHandler(this.checkBoxHideEvents_CheckedChanged);
-            // 
             // timerCalendar
             // 
             this.timerCalendar.Enabled = true;
             this.timerCalendar.Interval = 1000;
             this.timerCalendar.Tick += new System.EventHandler(this.timerCalendar_Tick);
             // 
-            // groupBox1
+            // checkBoxMakePastEvents
             // 
-            this.groupBox1.Controls.Add(this.checkBoxDeleteEventNow);
-            this.groupBox1.Location = new System.Drawing.Point(9, 87);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(240, 49);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Notifications";
-            // 
-            // checkBoxDeleteEventNow
-            // 
-            this.checkBoxDeleteEventNow.AutoSize = true;
-            this.checkBoxDeleteEventNow.Checked = true;
-            this.checkBoxDeleteEventNow.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxDeleteEventNow.Location = new System.Drawing.Point(6, 19);
-            this.checkBoxDeleteEventNow.Name = "checkBoxDeleteEventNow";
-            this.checkBoxDeleteEventNow.Size = new System.Drawing.Size(229, 17);
-            this.checkBoxDeleteEventNow.TabIndex = 0;
-            this.checkBoxDeleteEventNow.Text = "Delete Events as soon as nofication is sent";
-            this.checkBoxDeleteEventNow.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(252, 557);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Events";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.checkBoxMakePastEvents.AutoSize = true;
+            this.checkBoxMakePastEvents.Location = new System.Drawing.Point(5, 42);
+            this.checkBoxMakePastEvents.Name = "checkBoxMakePastEvents";
+            this.checkBoxMakePastEvents.Size = new System.Drawing.Size(141, 17);
+            this.checkBoxMakePastEvents.TabIndex = 1;
+            this.checkBoxMakePastEvents.Text = "Make Events in the past";
+            this.checkBoxMakePastEvents.UseVisualStyleBackColor = true;
             // 
             // Form
             // 
@@ -1460,15 +1521,17 @@
             this.tabPage1.ResumeLayout(false);
             this.groupBoxCreatCalendar.ResumeLayout(false);
             this.groupBoxCreatCalendar.PerformLayout();
+            this.groupBoxProperties.ResumeLayout(false);
+            this.groupBoxProperties.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeMinute)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeHour)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            this.groupBoxProperties.ResumeLayout(false);
-            this.groupBoxProperties.PerformLayout();
-            this.groupBoxAppearance.ResumeLayout(false);
-            this.groupBoxAppearance.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBoxAppearance.ResumeLayout(false);
+            this.groupBoxAppearance.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1598,5 +1661,10 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBoxDeleteEventNow;
         private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.ListBox listBoxEvents;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Label labelDescription;
+        private System.Windows.Forms.CheckBox checkBoxMakePastEvents;
     }
 }
