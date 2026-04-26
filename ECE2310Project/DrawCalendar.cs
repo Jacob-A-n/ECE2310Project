@@ -30,9 +30,9 @@ namespace ECE2310Project
             DateWindow = dateWindow;
         }
 
-        public DrawCalendar() //BROKEN DONT USE // SETS TIME TO YEAR 0 // CAUSES ERRORS
+        public DrawCalendar()
         {
-            DateWindow = DateTime.Now;
+            DateWindow = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0, new GregorianCalendar());
         }
 
         public void Update(int year, int month)

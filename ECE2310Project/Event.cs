@@ -11,9 +11,10 @@ namespace ECE2310Project
 {
     public class CalendarEvent //base class for Events
     {
+        public bool NotificationSent = false;
         public DateTime DateInfo { get; set; }//  https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-10.0 regarding DateTime class
         // public DateTime(int year, int month, int day, int hour, int minute, int second, System.Globalization.Calendar calendar); // constructor for DateTime
-        private Calendar Cal = CultureInfo.InvariantCulture.Calendar;
+        protected Calendar Cal = CultureInfo.InvariantCulture.Calendar;
         public string Name { get; set; }
         public string Discription { get; set; }
 
@@ -40,5 +41,40 @@ namespace ECE2310Project
         public bool IsLeapDay() => Cal.IsLeapDay(DateInfo.Year, DateInfo.Month, DateInfo.Day);
         public bool IsLeapMonth() => Cal.IsLeapMonth(DateInfo.Year, DateInfo.Month);
         public bool IsLeapYear() => Cal.IsLeapYear(DateInfo.Year);
+    }
+
+    public class RecurringEvent : CalendarEvent
+    {
+        public RecurringEvent(string name, int year, int month, int day, int hour = 0, int minute = 0, string discription = "") : base(name, year, month, day, hour, minute, discription)
+        {
+            if (DateTime.Compare(DateInfo, DateTime.Now) > 0) //if event is in the past, updates to next year
+            {
+                UpdateNotificationTime(year);
+            }
+        }
+
+        public void UpdateNotificationTime()
+        {
+            if (DateTime.IsLeapYear(DateInfo.Year + 1) && DateInfo.Month == 2 && DateInfo.Day == 29)
+            {
+                DateInfo = new DateTime(DateInfo.Year + 1, DateInfo.Month, DateInfo.Day - 1, DateInfo.Hour, DateInfo.Minute, 0, new GregorianCalendar());
+            }
+            else //all other cases
+            {
+                DateInfo = new DateTime(DateInfo.Year + 1, DateInfo.Month, DateInfo.Day, DateInfo.Hour, DateInfo.Minute, 0, new GregorianCalendar());
+            }
+        }
+
+        public void UpdateNotificationTime(int year)
+        {
+            if (DateTime.IsLeapYear(year) && DateInfo.Month == 2 && DateInfo.Day == 29)
+            {
+                DateInfo = new DateTime(year + 1, DateInfo.Month, DateInfo.Day - 1, DateInfo.Hour, DateInfo.Minute, 0, new GregorianCalendar());
+            }
+            else //all other cases
+            {
+                DateInfo = new DateTime(year + 1, DateInfo.Month, DateInfo.Day, DateInfo.Hour, DateInfo.Minute, 0, new GregorianCalendar());
+            }
+        }
     }
 }

@@ -28,12 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageCalendar = new System.Windows.Forms.TabPage();
+            this.tabControlInCalendar = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBoxCreatCalendar = new System.Windows.Forms.GroupBox();
+            this.buttonCreateEvent = new System.Windows.Forms.Button();
+            this.labelCreateEvent6 = new System.Windows.Forms.Label();
+            this.labelCreateEvent5 = new System.Windows.Forms.Label();
+            this.numericUpDownTimeMinute = new System.Windows.Forms.NumericUpDown();
+            this.labelCreateEvent4 = new System.Windows.Forms.Label();
+            this.numericUpDownTimeHour = new System.Windows.Forms.NumericUpDown();
+            this.dateTimePickerEventDate = new System.Windows.Forms.DateTimePicker();
+            this.labelCreateEvent3 = new System.Windows.Forms.Label();
+            this.textBoxEventDecription = new System.Windows.Forms.RichTextBox();
             this.labelCreateEvent2 = new System.Windows.Forms.Label();
             this.labelCreateEvent1 = new System.Windows.Forms.Label();
             this.textBoxEventName = new System.Windows.Forms.TextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.labelEvent41 = new System.Windows.Forms.Label();
             this.labelDay41 = new System.Windows.Forms.Label();
             this.labelEvent40 = new System.Windows.Forms.Label();
@@ -128,25 +141,28 @@
             this.labelDayLabel2 = new System.Windows.Forms.Label();
             this.labelDayLabel1 = new System.Windows.Forms.Label();
             this.textBoxMonth = new System.Windows.Forms.TextBox();
-            this.textBoxEventDecription = new System.Windows.Forms.RichTextBox();
-            this.labelCreateEvent3 = new System.Windows.Forms.Label();
-            this.tabControlInCalendar = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dateTimePickerEventDate = new System.Windows.Forms.DateTimePicker();
-            this.numericUpDownTimeHour = new System.Windows.Forms.NumericUpDown();
-            this.labelCreateEvent4 = new System.Windows.Forms.Label();
-            this.numericUpDownTimeMinute = new System.Windows.Forms.NumericUpDown();
-            this.labelCreateEvent5 = new System.Windows.Forms.Label();
-            this.labelCreateEvent6 = new System.Windows.Forms.Label();
-            this.buttonCreateEvent = new System.Windows.Forms.Button();
+            this.groupBoxProperties = new System.Windows.Forms.GroupBox();
+            this.checkBoxRecurringEvent = new System.Windows.Forms.CheckBox();
+            this.dateTimePickerGoTo = new System.Windows.Forms.DateTimePicker();
+            this.buttonGoTo = new System.Windows.Forms.Button();
+            this.groupBoxAppearance = new System.Windows.Forms.GroupBox();
+            this.checkBoxHideDays = new System.Windows.Forms.CheckBox();
+            this.checkBoxHideEvents = new System.Windows.Forms.CheckBox();
+            this.timerCalendar = new System.Windows.Forms.Timer(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBoxDeleteEventNow = new System.Windows.Forms.CheckBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.tabPageCalendar.SuspendLayout();
-            this.groupBoxCreatCalendar.SuspendLayout();
             this.tabControlInCalendar.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeHour)).BeginInit();
+            this.groupBoxCreatCalendar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeMinute)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeHour)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            this.groupBoxProperties.SuspendLayout();
+            this.groupBoxAppearance.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -266,8 +282,33 @@
             this.tabPageCalendar.Text = "Calendar";
             this.tabPageCalendar.UseVisualStyleBackColor = true;
             // 
+            // tabControlInCalendar
+            // 
+            this.tabControlInCalendar.Controls.Add(this.tabPage1);
+            this.tabControlInCalendar.Controls.Add(this.tabPage2);
+            this.tabControlInCalendar.Controls.Add(this.tabPage3);
+            this.tabControlInCalendar.Location = new System.Drawing.Point(700, 0);
+            this.tabControlInCalendar.Name = "tabControlInCalendar";
+            this.tabControlInCalendar.SelectedIndex = 0;
+            this.tabControlInCalendar.Size = new System.Drawing.Size(260, 583);
+            this.tabControlInCalendar.TabIndex = 96;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.buttonGoTo);
+            this.tabPage1.Controls.Add(this.dateTimePickerGoTo);
+            this.tabPage1.Controls.Add(this.groupBoxCreatCalendar);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(252, 557);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Create Event";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // groupBoxCreatCalendar
             // 
+            this.groupBoxCreatCalendar.Controls.Add(this.groupBoxProperties);
             this.groupBoxCreatCalendar.Controls.Add(this.buttonCreateEvent);
             this.groupBoxCreatCalendar.Controls.Add(this.labelCreateEvent6);
             this.groupBoxCreatCalendar.Controls.Add(this.labelCreateEvent5);
@@ -283,10 +324,107 @@
             this.groupBoxCreatCalendar.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxCreatCalendar.Location = new System.Drawing.Point(6, 8);
             this.groupBoxCreatCalendar.Name = "groupBoxCreatCalendar";
-            this.groupBoxCreatCalendar.Size = new System.Drawing.Size(241, 518);
+            this.groupBoxCreatCalendar.Size = new System.Drawing.Size(241, 406);
             this.groupBoxCreatCalendar.TabIndex = 95;
             this.groupBoxCreatCalendar.TabStop = false;
             this.groupBoxCreatCalendar.Text = "Create Event";
+            // 
+            // buttonCreateEvent
+            // 
+            this.buttonCreateEvent.Enabled = false;
+            this.buttonCreateEvent.Location = new System.Drawing.Point(16, 342);
+            this.buttonCreateEvent.Name = "buttonCreateEvent";
+            this.buttonCreateEvent.Size = new System.Drawing.Size(197, 53);
+            this.buttonCreateEvent.TabIndex = 13;
+            this.buttonCreateEvent.Text = "Create";
+            this.buttonCreateEvent.UseVisualStyleBackColor = true;
+            this.buttonCreateEvent.Click += new System.EventHandler(this.buttonCreateEvent_Click);
+            // 
+            // labelCreateEvent6
+            // 
+            this.labelCreateEvent6.AutoSize = true;
+            this.labelCreateEvent6.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCreateEvent6.Location = new System.Drawing.Point(160, 252);
+            this.labelCreateEvent6.Name = "labelCreateEvent6";
+            this.labelCreateEvent6.Size = new System.Drawing.Size(53, 19);
+            this.labelCreateEvent6.TabIndex = 12;
+            this.labelCreateEvent6.Text = "Minute";
+            // 
+            // labelCreateEvent5
+            // 
+            this.labelCreateEvent5.AutoSize = true;
+            this.labelCreateEvent5.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCreateEvent5.Location = new System.Drawing.Point(62, 250);
+            this.labelCreateEvent5.Name = "labelCreateEvent5";
+            this.labelCreateEvent5.Size = new System.Drawing.Size(40, 19);
+            this.labelCreateEvent5.TabIndex = 11;
+            this.labelCreateEvent5.Text = "Hour";
+            // 
+            // numericUpDownTimeMinute
+            // 
+            this.numericUpDownTimeMinute.Location = new System.Drawing.Point(108, 248);
+            this.numericUpDownTimeMinute.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.numericUpDownTimeMinute.Name = "numericUpDownTimeMinute";
+            this.numericUpDownTimeMinute.Size = new System.Drawing.Size(46, 27);
+            this.numericUpDownTimeMinute.TabIndex = 9;
+            // 
+            // labelCreateEvent4
+            // 
+            this.labelCreateEvent4.AutoSize = true;
+            this.labelCreateEvent4.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCreateEvent4.Location = new System.Drawing.Point(6, 224);
+            this.labelCreateEvent4.Name = "labelCreateEvent4";
+            this.labelCreateEvent4.Size = new System.Drawing.Size(38, 19);
+            this.labelCreateEvent4.TabIndex = 8;
+            this.labelCreateEvent4.Text = "Time";
+            // 
+            // numericUpDownTimeHour
+            // 
+            this.numericUpDownTimeHour.Location = new System.Drawing.Point(10, 246);
+            this.numericUpDownTimeHour.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.numericUpDownTimeHour.Name = "numericUpDownTimeHour";
+            this.numericUpDownTimeHour.Size = new System.Drawing.Size(46, 27);
+            this.numericUpDownTimeHour.TabIndex = 7;
+            this.numericUpDownTimeHour.Value = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
+            // 
+            // dateTimePickerEventDate
+            // 
+            this.dateTimePickerEventDate.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F);
+            this.dateTimePickerEventDate.Location = new System.Drawing.Point(6, 199);
+            this.dateTimePickerEventDate.Name = "dateTimePickerEventDate";
+            this.dateTimePickerEventDate.Size = new System.Drawing.Size(225, 22);
+            this.dateTimePickerEventDate.TabIndex = 6;
+            // 
+            // labelCreateEvent3
+            // 
+            this.labelCreateEvent3.AutoSize = true;
+            this.labelCreateEvent3.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCreateEvent3.Location = new System.Drawing.Point(6, 177);
+            this.labelCreateEvent3.Name = "labelCreateEvent3";
+            this.labelCreateEvent3.Size = new System.Drawing.Size(38, 19);
+            this.labelCreateEvent3.TabIndex = 5;
+            this.labelCreateEvent3.Text = "Date";
+            // 
+            // textBoxEventDecription
+            // 
+            this.textBoxEventDecription.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F);
+            this.textBoxEventDecription.Location = new System.Drawing.Point(6, 97);
+            this.textBoxEventDecription.Name = "textBoxEventDecription";
+            this.textBoxEventDecription.Size = new System.Drawing.Size(225, 77);
+            this.textBoxEventDecription.TabIndex = 4;
+            this.textBoxEventDecription.Text = "";
             // 
             // labelCreateEvent2
             // 
@@ -316,6 +454,18 @@
             this.textBoxEventName.Size = new System.Drawing.Size(229, 22);
             this.textBoxEventName.TabIndex = 0;
             this.textBoxEventName.TextChanged += new System.EventHandler(this.textBoxEventName_TextChanged);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.groupBox1);
+            this.tabPage2.Controls.Add(this.groupBoxAppearance);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(252, 557);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Settings";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // labelEvent41
             // 
@@ -1183,133 +1333,117 @@
             this.textBoxMonth.Text = "April, 2026";
             this.textBoxMonth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBoxEventDecription
+            // groupBoxProperties
             // 
-            this.textBoxEventDecription.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F);
-            this.textBoxEventDecription.Location = new System.Drawing.Point(6, 97);
-            this.textBoxEventDecription.Name = "textBoxEventDecription";
-            this.textBoxEventDecription.Size = new System.Drawing.Size(225, 77);
-            this.textBoxEventDecription.TabIndex = 4;
-            this.textBoxEventDecription.Text = "";
+            this.groupBoxProperties.Controls.Add(this.checkBoxRecurringEvent);
+            this.groupBoxProperties.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.groupBoxProperties.Location = new System.Drawing.Point(10, 281);
+            this.groupBoxProperties.Name = "groupBoxProperties";
+            this.groupBoxProperties.Size = new System.Drawing.Size(221, 55);
+            this.groupBoxProperties.TabIndex = 14;
+            this.groupBoxProperties.TabStop = false;
+            this.groupBoxProperties.Text = "Properties";
             // 
-            // labelCreateEvent3
+            // checkBoxRecurringEvent
             // 
-            this.labelCreateEvent3.AutoSize = true;
-            this.labelCreateEvent3.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCreateEvent3.Location = new System.Drawing.Point(6, 177);
-            this.labelCreateEvent3.Name = "labelCreateEvent3";
-            this.labelCreateEvent3.Size = new System.Drawing.Size(38, 19);
-            this.labelCreateEvent3.TabIndex = 5;
-            this.labelCreateEvent3.Text = "Date";
+            this.checkBoxRecurringEvent.AutoSize = true;
+            this.checkBoxRecurringEvent.Location = new System.Drawing.Point(6, 23);
+            this.checkBoxRecurringEvent.Name = "checkBoxRecurringEvent";
+            this.checkBoxRecurringEvent.Size = new System.Drawing.Size(110, 23);
+            this.checkBoxRecurringEvent.TabIndex = 0;
+            this.checkBoxRecurringEvent.Text = "Repeat yearly";
+            this.checkBoxRecurringEvent.UseVisualStyleBackColor = true;
             // 
-            // tabControlInCalendar
+            // dateTimePickerGoTo
             // 
-            this.tabControlInCalendar.Controls.Add(this.tabPage1);
-            this.tabControlInCalendar.Controls.Add(this.tabPage2);
-            this.tabControlInCalendar.Location = new System.Drawing.Point(700, 0);
-            this.tabControlInCalendar.Name = "tabControlInCalendar";
-            this.tabControlInCalendar.SelectedIndex = 0;
-            this.tabControlInCalendar.Size = new System.Drawing.Size(260, 583);
-            this.tabControlInCalendar.TabIndex = 96;
+            this.dateTimePickerGoTo.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F);
+            this.dateTimePickerGoTo.Location = new System.Drawing.Point(12, 433);
+            this.dateTimePickerGoTo.Name = "dateTimePickerGoTo";
+            this.dateTimePickerGoTo.Size = new System.Drawing.Size(225, 22);
+            this.dateTimePickerGoTo.TabIndex = 15;
             // 
-            // tabPage1
+            // buttonGoTo
             // 
-            this.tabPage1.Controls.Add(this.groupBoxCreatCalendar);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(252, 557);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.buttonGoTo.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold);
+            this.buttonGoTo.Location = new System.Drawing.Point(22, 461);
+            this.buttonGoTo.Name = "buttonGoTo";
+            this.buttonGoTo.Size = new System.Drawing.Size(197, 53);
+            this.buttonGoTo.TabIndex = 15;
+            this.buttonGoTo.Text = "Go To";
+            this.buttonGoTo.UseVisualStyleBackColor = true;
+            this.buttonGoTo.Click += new System.EventHandler(this.buttonGoTo_Click);
             // 
-            // tabPage2
+            // groupBoxAppearance
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(252, 557);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.groupBoxAppearance.Controls.Add(this.checkBoxHideEvents);
+            this.groupBoxAppearance.Controls.Add(this.checkBoxHideDays);
+            this.groupBoxAppearance.Location = new System.Drawing.Point(6, 11);
+            this.groupBoxAppearance.Name = "groupBoxAppearance";
+            this.groupBoxAppearance.Size = new System.Drawing.Size(240, 70);
+            this.groupBoxAppearance.TabIndex = 0;
+            this.groupBoxAppearance.TabStop = false;
+            this.groupBoxAppearance.Text = "Appearance";
             // 
-            // dateTimePickerEventDate
+            // checkBoxHideDays
             // 
-            this.dateTimePickerEventDate.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F);
-            this.dateTimePickerEventDate.Location = new System.Drawing.Point(6, 199);
-            this.dateTimePickerEventDate.Name = "dateTimePickerEventDate";
-            this.dateTimePickerEventDate.Size = new System.Drawing.Size(225, 22);
-            this.dateTimePickerEventDate.TabIndex = 6;
+            this.checkBoxHideDays.AutoSize = true;
+            this.checkBoxHideDays.Checked = true;
+            this.checkBoxHideDays.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxHideDays.Location = new System.Drawing.Point(6, 19);
+            this.checkBoxHideDays.Name = "checkBoxHideDays";
+            this.checkBoxHideDays.Size = new System.Drawing.Size(134, 17);
+            this.checkBoxHideDays.TabIndex = 0;
+            this.checkBoxHideDays.Text = "Hide days not in month";
+            this.checkBoxHideDays.UseVisualStyleBackColor = true;
+            this.checkBoxHideDays.CheckedChanged += new System.EventHandler(this.checkBoxHideDays_CheckedChanged);
             // 
-            // numericUpDownTimeHour
+            // checkBoxHideEvents
             // 
-            this.numericUpDownTimeHour.Location = new System.Drawing.Point(10, 246);
-            this.numericUpDownTimeHour.Maximum = new decimal(new int[] {
-            24,
-            0,
-            0,
-            0});
-            this.numericUpDownTimeHour.Name = "numericUpDownTimeHour";
-            this.numericUpDownTimeHour.Size = new System.Drawing.Size(46, 27);
-            this.numericUpDownTimeHour.TabIndex = 7;
-            this.numericUpDownTimeHour.Value = new decimal(new int[] {
-            12,
-            0,
-            0,
-            0});
+            this.checkBoxHideEvents.AutoSize = true;
+            this.checkBoxHideEvents.Location = new System.Drawing.Point(6, 42);
+            this.checkBoxHideEvents.Name = "checkBoxHideEvents";
+            this.checkBoxHideEvents.Size = new System.Drawing.Size(144, 17);
+            this.checkBoxHideEvents.TabIndex = 1;
+            this.checkBoxHideEvents.Text = "Hide events not in month";
+            this.checkBoxHideEvents.UseVisualStyleBackColor = true;
+            this.checkBoxHideEvents.CheckedChanged += new System.EventHandler(this.checkBoxHideEvents_CheckedChanged);
             // 
-            // labelCreateEvent4
+            // timerCalendar
             // 
-            this.labelCreateEvent4.AutoSize = true;
-            this.labelCreateEvent4.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCreateEvent4.Location = new System.Drawing.Point(6, 224);
-            this.labelCreateEvent4.Name = "labelCreateEvent4";
-            this.labelCreateEvent4.Size = new System.Drawing.Size(38, 19);
-            this.labelCreateEvent4.TabIndex = 8;
-            this.labelCreateEvent4.Text = "Time";
+            this.timerCalendar.Enabled = true;
+            this.timerCalendar.Interval = 1000;
+            this.timerCalendar.Tick += new System.EventHandler(this.timerCalendar_Tick);
             // 
-            // numericUpDownTimeMinute
+            // groupBox1
             // 
-            this.numericUpDownTimeMinute.Location = new System.Drawing.Point(108, 248);
-            this.numericUpDownTimeMinute.Maximum = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
-            this.numericUpDownTimeMinute.Name = "numericUpDownTimeMinute";
-            this.numericUpDownTimeMinute.Size = new System.Drawing.Size(46, 27);
-            this.numericUpDownTimeMinute.TabIndex = 9;
+            this.groupBox1.Controls.Add(this.checkBoxDeleteEventNow);
+            this.groupBox1.Location = new System.Drawing.Point(9, 87);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(240, 49);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Notifications";
             // 
-            // labelCreateEvent5
+            // checkBoxDeleteEventNow
             // 
-            this.labelCreateEvent5.AutoSize = true;
-            this.labelCreateEvent5.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCreateEvent5.Location = new System.Drawing.Point(62, 250);
-            this.labelCreateEvent5.Name = "labelCreateEvent5";
-            this.labelCreateEvent5.Size = new System.Drawing.Size(40, 19);
-            this.labelCreateEvent5.TabIndex = 11;
-            this.labelCreateEvent5.Text = "Hour";
+            this.checkBoxDeleteEventNow.AutoSize = true;
+            this.checkBoxDeleteEventNow.Checked = true;
+            this.checkBoxDeleteEventNow.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxDeleteEventNow.Location = new System.Drawing.Point(6, 19);
+            this.checkBoxDeleteEventNow.Name = "checkBoxDeleteEventNow";
+            this.checkBoxDeleteEventNow.Size = new System.Drawing.Size(229, 17);
+            this.checkBoxDeleteEventNow.TabIndex = 0;
+            this.checkBoxDeleteEventNow.Text = "Delete Events as soon as nofication is sent";
+            this.checkBoxDeleteEventNow.UseVisualStyleBackColor = true;
             // 
-            // labelCreateEvent6
+            // tabPage3
             // 
-            this.labelCreateEvent6.AutoSize = true;
-            this.labelCreateEvent6.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCreateEvent6.Location = new System.Drawing.Point(160, 252);
-            this.labelCreateEvent6.Name = "labelCreateEvent6";
-            this.labelCreateEvent6.Size = new System.Drawing.Size(53, 19);
-            this.labelCreateEvent6.TabIndex = 12;
-            this.labelCreateEvent6.Text = "Minute";
-            // 
-            // buttonCreateEvent
-            // 
-            this.buttonCreateEvent.Enabled = false;
-            this.buttonCreateEvent.Location = new System.Drawing.Point(25, 294);
-            this.buttonCreateEvent.Name = "buttonCreateEvent";
-            this.buttonCreateEvent.Size = new System.Drawing.Size(197, 53);
-            this.buttonCreateEvent.TabIndex = 13;
-            this.buttonCreateEvent.Text = "Create";
-            this.buttonCreateEvent.UseVisualStyleBackColor = true;
-            this.buttonCreateEvent.Click += new System.EventHandler(this.buttonCreateEvent_Click);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(252, 557);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Events";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // Form
             // 
@@ -1322,12 +1456,19 @@
             this.tabControl.ResumeLayout(false);
             this.tabPageCalendar.ResumeLayout(false);
             this.tabPageCalendar.PerformLayout();
-            this.groupBoxCreatCalendar.ResumeLayout(false);
-            this.groupBoxCreatCalendar.PerformLayout();
             this.tabControlInCalendar.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeHour)).EndInit();
+            this.groupBoxCreatCalendar.ResumeLayout(false);
+            this.groupBoxCreatCalendar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeMinute)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeHour)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.groupBoxProperties.ResumeLayout(false);
+            this.groupBoxProperties.PerformLayout();
+            this.groupBoxAppearance.ResumeLayout(false);
+            this.groupBoxAppearance.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1446,5 +1587,16 @@
         private System.Windows.Forms.Button buttonCreateEvent;
         private System.Windows.Forms.Label labelCreateEvent6;
         private System.Windows.Forms.Label labelCreateEvent5;
+        private System.Windows.Forms.GroupBox groupBoxProperties;
+        private System.Windows.Forms.CheckBox checkBoxRecurringEvent;
+        private System.Windows.Forms.Button buttonGoTo;
+        private System.Windows.Forms.DateTimePicker dateTimePickerGoTo;
+        private System.Windows.Forms.GroupBox groupBoxAppearance;
+        private System.Windows.Forms.CheckBox checkBoxHideEvents;
+        private System.Windows.Forms.CheckBox checkBoxHideDays;
+        private System.Windows.Forms.Timer timerCalendar;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox checkBoxDeleteEventNow;
+        private System.Windows.Forms.TabPage tabPage3;
     }
 }
