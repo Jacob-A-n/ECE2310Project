@@ -23,6 +23,37 @@ namespace ECE2310Project
         private List<RecurringEvent> recurringEvents = new List<RecurringEvent>();
         private List<CalendarEvent> eventTracker = new List<CalendarEvent>();
         private DrawCalendar drawCalendar = new DrawCalendar();
+        private List<StudentNote> notes = new List<StudentNote>();
+        private int totalFocusSeconds = 0;
+        private int focusSecondsLeft = 0;
+        private int focusSecondsPassed = 0;
+        private int totalEventsMade = 0;
+        private int totalEventsFinished = 0;
+        private bool focusRunning = false;
+        private bool usingStopWatch = false;
+        private FormBorderStyle oldBorderStyle;
+        private FormWindowState oldWindowState;
+
+        private TabPage tabPageFocus;
+        private TabPage tabPageStats;
+        private TabPage tabPageNotes;
+        private Label labelFocusTime;
+        private Label labelStats;
+        private Label labelNoteBody;
+        private Button buttonFocusStart;
+        private Button buttonFocusStop;
+        private Button buttonFocusFullScreen;
+        private Button buttonFinishEvent;
+        private NumericUpDown numericFocusMinutes;
+        private NumericUpDown numericGoalMinutes;
+        private NumericUpDown numericGoalPercent;
+        private RadioButton radioTimer;
+        private RadioButton radioStopWatch;
+        private ListBox listBoxNotes;
+        private TextBox textBoxNoteTitle;
+        private RichTextBox richTextBoxNote;
+        private ComboBox comboBoxNoteEvents;
+        private Timer timerFocus;
 
         public Form()
         {
@@ -45,6 +76,7 @@ namespace ECE2310Project
             recurringEvents.Add(new RecurringEvent("Juneteenth", year, 6, 19));
 
             BuildCalendar(drawCalendar);
+            BuildExtraStudentFeatures();
         }
 
         public void BuildCalendar(DrawCalendar dCal)
@@ -366,6 +398,7 @@ namespace ECE2310Project
             {
                 listBoxEvents.Items.Add(eventTracker[i].Name + " on " + eventTracker[i].DateInfo.ToShortDateString());
             }
+            UpdateNoteEventChoices();
         }
 
         private void AddEvent()
@@ -402,41 +435,532 @@ namespace ECE2310Project
             }
 
             eventTracker.Add(new CalendarEvent(textBoxEventName.Text, dateTimePickerEventDate.Value.Year, dateTimePickerEventDate.Value.Month, dateTimePickerEventDate.Value.Day, (int)numericUpDownTimeHour.Value, (int)numericUpDownTimeMinute.Value, textBoxEventDecription.Text));
+            totalEventsMade++;
             BuildCalendar(drawCalendar);
             buttonCreateEvent.Enabled = false;
             textBoxEventName.Text = "";
             textBoxEventDecription.Text = "";
             checkBoxRecurringEvent.Checked = false;
             UpdateList();
+            UpdateStats();
         }
 
         private void DeleteEvent()
         {
             if (listBoxEvents.SelectedIndex >= 0)//something is selected
             {
-                for (int i = events.Count - 1; i >= 0; i--)
+                RemoveEventFromLists(listBoxEvents.SelectedIndex);
+            }
+        }
+
+        private void RemoveEventFromLists(int eventNumber)
+        {
+            for (int i = events.Count - 1; i >= 0; i--)
+            {
+                if (DateTime.Compare(events[i].DateInfo, eventTracker[eventNumber].DateInfo) == 0 && events[i].Name == eventTracker[eventNumber].Name)
                 {
-                    if (DateTime.Compare(events[i].DateInfo, eventTracker[listBoxEvents.SelectedIndex].DateInfo) == 0 && events[i].Name == eventTracker[listBoxEvents.SelectedIndex].Name)
-                    {
-                        events.RemoveAt(i);
-                    }
+                    events.RemoveAt(i);
                 }
-                for (int j = recurringEvents.Count - 1; j >= 0; j--)
+            }
+            for (int j = recurringEvents.Count - 1; j >= 0; j--)
+            {
+                if (DateTime.Compare(recurringEvents[j].DateInfo, eventTracker[eventNumber].DateInfo) == 0 && recurringEvents[j].Name == eventTracker[eventNumber].Name)
                 {
-                    if (DateTime.Compare(recurringEvents[j].DateInfo, eventTracker[listBoxEvents.SelectedIndex].DateInfo) == 0 && recurringEvents[j].Name == eventTracker[listBoxEvents.SelectedIndex].Name)
-                    {
-                        recurringEvents.RemoveAt(j);
-                    }
+                    recurringEvents.RemoveAt(j);
                 }
-                eventTracker.RemoveAt(listBoxEvents.SelectedIndex);
-                UpdateList();
-                BuildCalendar(drawCalendar);
-                labelDescription.Text = "";
-                buttonDelete.Enabled = false;
+            }
+            eventTracker.RemoveAt(eventNumber);
+            UpdateList();
+            BuildCalendar(drawCalendar);
+            labelDescription.Text = "";
+            buttonDelete.Enabled = false;
+            buttonFinishEvent.Enabled = false;
+            UpdateStats();
+        }
+
+        private void BuildExtraStudentFeatures()
+        {
+            timerFocus = new Timer();
+            timerFocus.Interval = 1000;
+            timerFocus.Tick += new EventHandler(timerFocus_Tick);
+
+            BuildFocusTab();
+            BuildStatsTab();
+            BuildNotesTab();
+
+            buttonFinishEvent = new Button();
+            buttonFinishEvent.BackColor = Color.LightGreen;
+            buttonFinishEvent.Enabled = false;
+            buttonFinishEvent.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold);
+            buttonFinishEvent.Location = new Point(8, 374);
+            buttonFinishEvent.Name = "buttonFinishEvent";
+            buttonFinishEvent.Size = new Size(235, 25);
+            buttonFinishEvent.Text = "Mark Selected Done";
+            buttonFinishEvent.UseVisualStyleBackColor = false;
+            buttonFinishEvent.Click += new EventHandler(buttonFinishEvent_Click);
+            tabPage3.Controls.Add(buttonFinishEvent);
+
+            UpdateStats();
+            UpdateNoteEventChoices();
+        }
+
+        private void BuildFocusTab()
+        {
+            tabPageFocus = new TabPage();
+            tabPageFocus.Name = "tabPageFocus";
+            tabPageFocus.Text = "Focus";
+            tabPageFocus.BackColor = Color.Black;
+
+            Label labelTitle = new Label();
+            labelTitle.Text = "Focus Mode";
+            labelTitle.ForeColor = Color.White;
+            labelTitle.Font = new Font("Microsoft Sans Serif", 22F, FontStyle.Bold);
+            labelTitle.Location = new Point(40, 35);
+            labelTitle.Size = new Size(350, 45);
+
+            labelFocusTime = new Label();
+            labelFocusTime.Text = "00:25:00";
+            labelFocusTime.ForeColor = Color.LightGreen;
+            labelFocusTime.Font = new Font("Consolas", 36F, FontStyle.Bold);
+            labelFocusTime.Location = new Point(40, 95);
+            labelFocusTime.Size = new Size(350, 70);
+
+            Label labelMinutes = new Label();
+            labelMinutes.Text = "Timer Minutes";
+            labelMinutes.ForeColor = Color.White;
+            labelMinutes.Location = new Point(45, 180);
+            labelMinutes.Size = new Size(100, 20);
+
+            numericFocusMinutes = new NumericUpDown();
+            numericFocusMinutes.Minimum = 1;
+            numericFocusMinutes.Maximum = 240;
+            numericFocusMinutes.Value = 25;
+            numericFocusMinutes.Location = new Point(150, 178);
+            numericFocusMinutes.Size = new Size(70, 20);
+            numericFocusMinutes.ValueChanged += new EventHandler(numericFocusMinutes_ValueChanged);
+
+            radioTimer = new RadioButton();
+            radioTimer.Text = "Timer";
+            radioTimer.ForeColor = Color.White;
+            radioTimer.Checked = true;
+            radioTimer.Location = new Point(45, 215);
+
+            radioStopWatch = new RadioButton();
+            radioStopWatch.Text = "Stopwatch";
+            radioStopWatch.ForeColor = Color.White;
+            radioStopWatch.Location = new Point(130, 215);
+
+            buttonFocusStart = new Button();
+            buttonFocusStart.Text = "Start";
+            buttonFocusStart.Location = new Point(45, 260);
+            buttonFocusStart.Size = new Size(110, 45);
+            buttonFocusStart.Click += new EventHandler(buttonFocusStart_Click);
+
+            buttonFocusStop = new Button();
+            buttonFocusStop.Text = "Stop";
+            buttonFocusStop.Location = new Point(175, 260);
+            buttonFocusStop.Size = new Size(110, 45);
+            buttonFocusStop.Click += new EventHandler(buttonFocusStop_Click);
+
+            buttonFocusFullScreen = new Button();
+            buttonFocusFullScreen.Text = "Full Screen";
+            buttonFocusFullScreen.Location = new Point(45, 320);
+            buttonFocusFullScreen.Size = new Size(240, 45);
+            buttonFocusFullScreen.Click += new EventHandler(buttonFocusFullScreen_Click);
+
+            Label labelInfo = new Label();
+            labelInfo.Text = "Windows does not let simple WinForms code mute all notifications, so this just makes a plain focus screen.";
+            labelInfo.ForeColor = Color.White;
+            labelInfo.Location = new Point(45, 385);
+            labelInfo.Size = new Size(500, 60);
+
+            tabPageFocus.Controls.Add(labelTitle);
+            tabPageFocus.Controls.Add(labelFocusTime);
+            tabPageFocus.Controls.Add(labelMinutes);
+            tabPageFocus.Controls.Add(numericFocusMinutes);
+            tabPageFocus.Controls.Add(radioTimer);
+            tabPageFocus.Controls.Add(radioStopWatch);
+            tabPageFocus.Controls.Add(buttonFocusStart);
+            tabPageFocus.Controls.Add(buttonFocusStop);
+            tabPageFocus.Controls.Add(buttonFocusFullScreen);
+            tabPageFocus.Controls.Add(labelInfo);
+            tabControl.Controls.Add(tabPageFocus);
+        }
+
+        private void BuildStatsTab()
+        {
+            tabPageStats = new TabPage();
+            tabPageStats.Name = "tabPageStats";
+            tabPageStats.Text = "Stats";
+
+            Label labelGoal1 = new Label();
+            labelGoal1.Text = "Focus goal minutes";
+            labelGoal1.Location = new Point(40, 40);
+            labelGoal1.Size = new Size(140, 20);
+
+            numericGoalMinutes = new NumericUpDown();
+            numericGoalMinutes.Minimum = 1;
+            numericGoalMinutes.Maximum = 10000;
+            numericGoalMinutes.Value = 60;
+            numericGoalMinutes.Location = new Point(190, 38);
+            numericGoalMinutes.ValueChanged += new EventHandler(goal_ValueChanged);
+
+            Label labelGoal2 = new Label();
+            labelGoal2.Text = "Task done goal %";
+            labelGoal2.Location = new Point(40, 75);
+            labelGoal2.Size = new Size(140, 20);
+
+            numericGoalPercent = new NumericUpDown();
+            numericGoalPercent.Minimum = 1;
+            numericGoalPercent.Maximum = 100;
+            numericGoalPercent.Value = 75;
+            numericGoalPercent.Location = new Point(190, 73);
+            numericGoalPercent.ValueChanged += new EventHandler(goal_ValueChanged);
+
+            labelStats = new Label();
+            labelStats.BorderStyle = BorderStyle.Fixed3D;
+            labelStats.Location = new Point(40, 120);
+            labelStats.Size = new Size(430, 250);
+            labelStats.Font = new Font("Microsoft Sans Serif", 11F);
+
+            tabPageStats.Controls.Add(labelGoal1);
+            tabPageStats.Controls.Add(numericGoalMinutes);
+            tabPageStats.Controls.Add(labelGoal2);
+            tabPageStats.Controls.Add(numericGoalPercent);
+            tabPageStats.Controls.Add(labelStats);
+            tabControl.Controls.Add(tabPageStats);
+        }
+
+        private void BuildNotesTab()
+        {
+            tabPageNotes = new TabPage();
+            tabPageNotes.Name = "tabPageNotes";
+            tabPageNotes.Text = "Notes";
+
+            listBoxNotes = new ListBox();
+            listBoxNotes.Location = new Point(25, 25);
+            listBoxNotes.Size = new Size(250, 250);
+            listBoxNotes.SelectedIndexChanged += new EventHandler(listBoxNotes_SelectedIndexChanged);
+
+            Label labelTitle = new Label();
+            labelTitle.Text = "Title";
+            labelTitle.Location = new Point(300, 25);
+
+            textBoxNoteTitle = new TextBox();
+            textBoxNoteTitle.Location = new Point(300, 45);
+            textBoxNoteTitle.Size = new Size(280, 22);
+
+            Label labelAttach = new Label();
+            labelAttach.Text = "Attach to event";
+            labelAttach.Location = new Point(300, 80);
+            labelAttach.Size = new Size(150, 20);
+
+            comboBoxNoteEvents = new ComboBox();
+            comboBoxNoteEvents.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxNoteEvents.Location = new Point(300, 100);
+            comboBoxNoteEvents.Size = new Size(280, 22);
+
+            richTextBoxNote = new RichTextBox();
+            richTextBoxNote.Location = new Point(300, 145);
+            richTextBoxNote.Size = new Size(400, 210);
+
+            Button buttonSaveNote = new Button();
+            buttonSaveNote.Text = "Save Note";
+            buttonSaveNote.Location = new Point(300, 370);
+            buttonSaveNote.Size = new Size(115, 35);
+            buttonSaveNote.Click += new EventHandler(buttonSaveNote_Click);
+
+            Button buttonNewNote = new Button();
+            buttonNewNote.Text = "Clear";
+            buttonNewNote.Location = new Point(430, 370);
+            buttonNewNote.Size = new Size(115, 35);
+            buttonNewNote.Click += new EventHandler(buttonNewNote_Click);
+
+            Button buttonDeleteNote = new Button();
+            buttonDeleteNote.Text = "Delete Note";
+            buttonDeleteNote.Location = new Point(560, 370);
+            buttonDeleteNote.Size = new Size(115, 35);
+            buttonDeleteNote.Click += new EventHandler(buttonDeleteNote_Click);
+
+            labelNoteBody = new Label();
+            labelNoteBody.Text = "Select a note to view it, or type a title and note to save a new one.";
+            labelNoteBody.Location = new Point(25, 295);
+            labelNoteBody.Size = new Size(250, 120);
+
+            tabPageNotes.Controls.Add(listBoxNotes);
+            tabPageNotes.Controls.Add(labelTitle);
+            tabPageNotes.Controls.Add(textBoxNoteTitle);
+            tabPageNotes.Controls.Add(labelAttach);
+            tabPageNotes.Controls.Add(comboBoxNoteEvents);
+            tabPageNotes.Controls.Add(richTextBoxNote);
+            tabPageNotes.Controls.Add(buttonSaveNote);
+            tabPageNotes.Controls.Add(buttonNewNote);
+            tabPageNotes.Controls.Add(buttonDeleteNote);
+            tabPageNotes.Controls.Add(labelNoteBody);
+            tabControl.Controls.Add(tabPageNotes);
+        }
+
+        private void UpdateFocusLabel()
+        {
+            if (usingStopWatch)
+            {
+                labelFocusTime.Text = FormatSeconds(focusSecondsPassed);
+            }
+            else
+            {
+                labelFocusTime.Text = FormatSeconds(focusSecondsLeft);
+            }
+        }
+
+        private string FormatSeconds(int seconds)
+        {
+            int hours = seconds / 3600;
+            int minutes = (seconds % 3600) / 60;
+            int leftSeconds = seconds % 60;
+            return hours.ToString("00") + ":" + minutes.ToString("00") + ":" + leftSeconds.ToString("00");
+        }
+
+        private void UpdateStats()
+        {
+            if (labelStats == null)
+            {
+                return;
+            }
+
+            int focusMinutes = totalFocusSeconds / 60;
+            int percentDone = 0;
+            if (totalEventsMade > 0)
+            {
+                percentDone = (totalEventsFinished * 100) / totalEventsMade;
+            }
+
+            string focusGoalText = "not reached";
+            if (focusMinutes >= numericGoalMinutes.Value)
+            {
+                focusGoalText = "reached";
+            }
+
+            string percentGoalText = "not reached";
+            if (percentDone >= numericGoalPercent.Value)
+            {
+                percentGoalText = "reached";
+            }
+
+            labelStats.Text = "Total focus time: " + FormatSeconds(totalFocusSeconds) + "\n\n" +
+                              "Events created: " + totalEventsMade + "\n" +
+                              "Events finished: " + totalEventsFinished + "\n" +
+                              "Percent finished: " + percentDone + "%\n\n" +
+                              "Focus goal: " + numericGoalMinutes.Value + " minutes - " + focusGoalText + "\n" +
+                              "Task goal: " + numericGoalPercent.Value + "% - " + percentGoalText;
+        }
+
+        private void UpdateNoteEventChoices()
+        {
+            if (comboBoxNoteEvents == null)
+            {
+                return;
+            }
+
+            string oldText = "";
+            if (comboBoxNoteEvents.SelectedItem != null)
+            {
+                oldText = comboBoxNoteEvents.SelectedItem.ToString();
+            }
+
+            comboBoxNoteEvents.Items.Clear();
+            comboBoxNoteEvents.Items.Add("(no event)");
+            for (int i = 0; i < eventTracker.Count; i++)
+            {
+                comboBoxNoteEvents.Items.Add(eventTracker[i].Name + " on " + eventTracker[i].DateInfo.ToShortDateString());
+            }
+            comboBoxNoteEvents.SelectedIndex = 0;
+
+            for (int i = 0; i < comboBoxNoteEvents.Items.Count; i++)
+            {
+                if (comboBoxNoteEvents.Items[i].ToString() == oldText)
+                {
+                    comboBoxNoteEvents.SelectedIndex = i;
+                }
+            }
+        }
+
+        private void UpdateNoteList()
+        {
+            listBoxNotes.Items.Clear();
+            for (int i = 0; i < notes.Count; i++)
+            {
+                listBoxNotes.Items.Add(notes[i].ToString());
             }
         }
 
         //ALL EVENT TRIGGERS BELOW
+        private void buttonFocusStart_Click(object sender, EventArgs e)
+        {
+            usingStopWatch = radioStopWatch.Checked;
+            focusRunning = true;
+            focusSecondsPassed = 0;
+            if (!usingStopWatch)
+            {
+                focusSecondsLeft = (int)numericFocusMinutes.Value * 60;
+            }
+            UpdateFocusLabel();
+            timerFocus.Start();
+        }
+
+        private void buttonFocusStop_Click(object sender, EventArgs e)
+        {
+            timerFocus.Stop();
+            focusRunning = false;
+            if (usingStopWatch)
+            {
+                totalFocusSeconds += focusSecondsPassed;
+            }
+            else
+            {
+                totalFocusSeconds += ((int)numericFocusMinutes.Value * 60) - focusSecondsLeft;
+            }
+            focusSecondsPassed = 0;
+            focusSecondsLeft = (int)numericFocusMinutes.Value * 60;
+            UpdateFocusLabel();
+            UpdateStats();
+        }
+
+        private void buttonFocusFullScreen_Click(object sender, EventArgs e)
+        {
+            if (FormBorderStyle != System.Windows.Forms.FormBorderStyle.None)
+            {
+                oldBorderStyle = FormBorderStyle;
+                oldWindowState = WindowState;
+                FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                WindowState = FormWindowState.Maximized;
+                tabControl.SelectedTab = tabPageFocus;
+                buttonFocusFullScreen.Text = "Exit Full Screen";
+            }
+            else
+            {
+                FormBorderStyle = oldBorderStyle;
+                WindowState = oldWindowState;
+                buttonFocusFullScreen.Text = "Full Screen";
+            }
+        }
+
+        private void timerFocus_Tick(object sender, EventArgs e)
+        {
+            if (!focusRunning)
+            {
+                return;
+            }
+
+            if (usingStopWatch)
+            {
+                focusSecondsPassed++;
+            }
+            else
+            {
+                focusSecondsLeft--;
+                if (focusSecondsLeft <= 0)
+                {
+                    totalFocusSeconds += (int)numericFocusMinutes.Value * 60;
+                    timerFocus.Stop();
+                    focusRunning = false;
+                    focusSecondsLeft = 0;
+                    MessageBox.Show("Timer finished!", "Focus Mode", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UpdateStats();
+                }
+            }
+            UpdateFocusLabel();
+        }
+
+        private void numericFocusMinutes_ValueChanged(object sender, EventArgs e)
+        {
+            if (!focusRunning)
+            {
+                focusSecondsLeft = (int)numericFocusMinutes.Value * 60;
+                UpdateFocusLabel();
+            }
+        }
+
+        private void goal_ValueChanged(object sender, EventArgs e)
+        {
+            UpdateStats();
+        }
+
+        private void buttonFinishEvent_Click(object sender, EventArgs e)
+        {
+            if (listBoxEvents.SelectedIndex >= 0)
+            {
+                totalEventsFinished++;
+                RemoveEventFromLists(listBoxEvents.SelectedIndex);
+                UpdateStats();
+            }
+        }
+
+        private void buttonSaveNote_Click(object sender, EventArgs e)
+        {
+            if (textBoxNoteTitle.Text == "")
+            {
+                MessageBox.Show("Please type a title for the note.");
+                return;
+            }
+
+            string attachedEvent = "";
+            if (comboBoxNoteEvents.SelectedItem != null && comboBoxNoteEvents.SelectedItem.ToString() != "(no event)")
+            {
+                attachedEvent = comboBoxNoteEvents.SelectedItem.ToString();
+            }
+
+            if (listBoxNotes.SelectedIndex >= 0)
+            {
+                notes[listBoxNotes.SelectedIndex].Title = textBoxNoteTitle.Text;
+                notes[listBoxNotes.SelectedIndex].Words = richTextBoxNote.Text;
+                notes[listBoxNotes.SelectedIndex].AttachedEvent = attachedEvent;
+            }
+            else
+            {
+                notes.Add(new StudentNote(textBoxNoteTitle.Text, richTextBoxNote.Text, attachedEvent));
+            }
+
+            UpdateNoteList();
+        }
+
+        private void buttonNewNote_Click(object sender, EventArgs e)
+        {
+            listBoxNotes.SelectedIndex = -1;
+            textBoxNoteTitle.Text = "";
+            richTextBoxNote.Text = "";
+            comboBoxNoteEvents.SelectedIndex = 0;
+            labelNoteBody.Text = "New note";
+        }
+
+        private void buttonDeleteNote_Click(object sender, EventArgs e)
+        {
+            if (listBoxNotes.SelectedIndex >= 0)
+            {
+                notes.RemoveAt(listBoxNotes.SelectedIndex);
+                UpdateNoteList();
+                buttonNewNote_Click(sender, e);
+            }
+        }
+
+        private void listBoxNotes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxNotes.SelectedIndex >= 0)
+            {
+                StudentNote note = notes[listBoxNotes.SelectedIndex];
+                textBoxNoteTitle.Text = note.Title;
+                richTextBoxNote.Text = note.Words;
+                labelNoteBody.Text = note.Words;
+                comboBoxNoteEvents.SelectedIndex = 0;
+                for (int i = 0; i < comboBoxNoteEvents.Items.Count; i++)
+                {
+                    if (comboBoxNoteEvents.Items[i].ToString() == note.AttachedEvent)
+                    {
+                        comboBoxNoteEvents.SelectedIndex = i;
+                    }
+                }
+            }
+        }
+
         private void buttonRedcedeMonth_Click(object sender, EventArgs e)
         {
             if (month == 1)
@@ -519,11 +1043,13 @@ namespace ECE2310Project
             {
                 labelDescription.Text = eventTracker[listBoxEvents.SelectedIndex].Discription;
                 buttonDelete.Enabled = true;
+                buttonFinishEvent.Enabled = true;
             }
             else if (listBoxEvents.SelectedIndex < 0)
             {
                 labelDescription.Text = "";
                 buttonDelete.Enabled = false;
+                buttonFinishEvent.Enabled = false;
             }
         }
 
