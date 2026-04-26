@@ -31,8 +31,7 @@ namespace ECE2310Project
         private int totalEventsFinished = 0;
         private bool focusRunning = false;
         private bool usingStopWatch = false;
-        private FormBorderStyle oldBorderStyle;
-        private FormWindowState oldWindowState;
+        
 
         private TabPage tabPageFocus;
         private TabPage tabPageStats;
@@ -42,7 +41,6 @@ namespace ECE2310Project
         private Label labelNoteBody;
         private Button buttonFocusStart;
         private Button buttonFocusStop;
-        private Button buttonFocusFullScreen;
         private Button buttonFinishEvent;
         private NumericUpDown numericFocusMinutes;
         private NumericUpDown numericGoalMinutes;
@@ -526,72 +524,82 @@ namespace ECE2310Project
             labelTitle.Location = new Point(40, 35);
             labelTitle.Size = new Size(350, 45);
 
+            Label labelSubtitle = new Label();
+            labelSubtitle.Text = "Use the timer or stopwatch to track your study sessions.";
+            labelSubtitle.ForeColor = Color.Gray;
+            labelSubtitle.Location = new Point(42, 80);
+            labelSubtitle.Size = new Size(400, 20);
+
             labelFocusTime = new Label();
             labelFocusTime.Text = "00:25:00";
             labelFocusTime.ForeColor = Color.LightGreen;
             labelFocusTime.Font = new Font("Consolas", 36F, FontStyle.Bold);
-            labelFocusTime.Location = new Point(40, 95);
+            labelFocusTime.Location = new Point(40, 110);
             labelFocusTime.Size = new Size(350, 70);
 
-            Label labelMinutes = new Label();
-            labelMinutes.Text = "Timer Minutes";
-            labelMinutes.ForeColor = Color.White;
-            labelMinutes.Location = new Point(45, 180);
-            labelMinutes.Size = new Size(100, 20);
-
-            numericFocusMinutes = new NumericUpDown();
-            numericFocusMinutes.Minimum = 1;
-            numericFocusMinutes.Maximum = 240;
-            numericFocusMinutes.Value = 25;
-            numericFocusMinutes.Location = new Point(150, 178);
-            numericFocusMinutes.Size = new Size(70, 20);
-            numericFocusMinutes.ValueChanged += new EventHandler(numericFocusMinutes_ValueChanged);
+            Label labelMode = new Label();
+            labelMode.Text = "Mode";
+            labelMode.ForeColor = Color.White;
+            labelMode.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold);
+            labelMode.Location = new Point(45, 195);
+            labelMode.Size = new Size(50, 20);
 
             radioTimer = new RadioButton();
             radioTimer.Text = "Timer";
             radioTimer.ForeColor = Color.White;
             radioTimer.Checked = true;
-            radioTimer.Location = new Point(45, 215);
+            radioTimer.Location = new Point(100, 195);
 
             radioStopWatch = new RadioButton();
             radioStopWatch.Text = "Stopwatch";
             radioStopWatch.ForeColor = Color.White;
-            radioStopWatch.Location = new Point(130, 215);
+            radioStopWatch.Location = new Point(185, 195);
+
+            Label labelMinutes = new Label();
+            labelMinutes.Text = "Duration (minutes)";
+            labelMinutes.ForeColor = Color.White;
+            labelMinutes.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold);
+            labelMinutes.Location = new Point(45, 230);
+            labelMinutes.Size = new Size(130, 20);
+
+            numericFocusMinutes = new NumericUpDown();
+            numericFocusMinutes.Minimum = 1;
+            numericFocusMinutes.Maximum = 240;
+            numericFocusMinutes.Value = 25;
+            numericFocusMinutes.Location = new Point(185, 228);
+            numericFocusMinutes.Size = new Size(70, 20);
+            numericFocusMinutes.ValueChanged += new EventHandler(numericFocusMinutes_ValueChanged);
 
             buttonFocusStart = new Button();
             buttonFocusStart.Text = "Start";
-            buttonFocusStart.Location = new Point(45, 260);
-            buttonFocusStart.Size = new Size(110, 45);
+            buttonFocusStart.BackColor = Color.FromArgb(40, 120, 40);
+            buttonFocusStart.ForeColor = Color.White;
+            buttonFocusStart.FlatStyle = FlatStyle.Flat;
+            buttonFocusStart.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold);
+            buttonFocusStart.Location = new Point(45, 275);
+            buttonFocusStart.Size = new Size(120, 45);
             buttonFocusStart.Click += new EventHandler(buttonFocusStart_Click);
 
             buttonFocusStop = new Button();
             buttonFocusStop.Text = "Stop";
-            buttonFocusStop.Location = new Point(175, 260);
-            buttonFocusStop.Size = new Size(110, 45);
+            buttonFocusStop.BackColor = Color.FromArgb(160, 40, 40);
+            buttonFocusStop.ForeColor = Color.White;
+            buttonFocusStop.FlatStyle = FlatStyle.Flat;
+            buttonFocusStop.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold);
+            buttonFocusStop.Location = new Point(185, 275);
+            buttonFocusStop.Size = new Size(120, 45);
             buttonFocusStop.Click += new EventHandler(buttonFocusStop_Click);
 
-            buttonFocusFullScreen = new Button();
-            buttonFocusFullScreen.Text = "Full Screen";
-            buttonFocusFullScreen.Location = new Point(45, 320);
-            buttonFocusFullScreen.Size = new Size(240, 45);
-            buttonFocusFullScreen.Click += new EventHandler(buttonFocusFullScreen_Click);
-
-            Label labelInfo = new Label();
-            labelInfo.Text = "Windows does not let simple WinForms code mute all notifications, so this just makes a plain focus screen.";
-            labelInfo.ForeColor = Color.White;
-            labelInfo.Location = new Point(45, 385);
-            labelInfo.Size = new Size(500, 60);
-
             tabPageFocus.Controls.Add(labelTitle);
+            tabPageFocus.Controls.Add(labelSubtitle);
             tabPageFocus.Controls.Add(labelFocusTime);
+            tabPageFocus.Controls.Add(labelMode);
             tabPageFocus.Controls.Add(labelMinutes);
             tabPageFocus.Controls.Add(numericFocusMinutes);
             tabPageFocus.Controls.Add(radioTimer);
             tabPageFocus.Controls.Add(radioStopWatch);
             tabPageFocus.Controls.Add(buttonFocusStart);
             tabPageFocus.Controls.Add(buttonFocusStop);
-            tabPageFocus.Controls.Add(buttonFocusFullScreen);
-            tabPageFocus.Controls.Add(labelInfo);
             tabControl.Controls.Add(tabPageFocus);
         }
 
@@ -601,36 +609,50 @@ namespace ECE2310Project
             tabPageStats.Name = "tabPageStats";
             tabPageStats.Text = "Stats";
 
+            Label labelTitle = new Label();
+            labelTitle.Text = "Your Progress";
+            labelTitle.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Bold);
+            labelTitle.Location = new Point(40, 10);
+            labelTitle.Size = new Size(400, 30);
+
+            Label labelExplain = new Label();
+            labelExplain.Text = "Track how much time you spend studying and how many tasks you complete. Set goals below and see if you hit them.";
+            labelExplain.Location = new Point(40, 42);
+            labelExplain.Size = new Size(450, 35);
+            labelExplain.ForeColor = Color.Gray;
+
             Label labelGoal1 = new Label();
-            labelGoal1.Text = "Focus goal minutes";
-            labelGoal1.Location = new Point(40, 40);
+            labelGoal1.Text = "Focus goal (minutes)";
+            labelGoal1.Location = new Point(40, 90);
             labelGoal1.Size = new Size(140, 20);
 
             numericGoalMinutes = new NumericUpDown();
             numericGoalMinutes.Minimum = 1;
             numericGoalMinutes.Maximum = 10000;
             numericGoalMinutes.Value = 60;
-            numericGoalMinutes.Location = new Point(190, 38);
+            numericGoalMinutes.Location = new Point(190, 88);
             numericGoalMinutes.ValueChanged += new EventHandler(goal_ValueChanged);
 
             Label labelGoal2 = new Label();
-            labelGoal2.Text = "Task done goal %";
-            labelGoal2.Location = new Point(40, 75);
+            labelGoal2.Text = "Task done goal (%)";
+            labelGoal2.Location = new Point(40, 120);
             labelGoal2.Size = new Size(140, 20);
 
             numericGoalPercent = new NumericUpDown();
             numericGoalPercent.Minimum = 1;
             numericGoalPercent.Maximum = 100;
             numericGoalPercent.Value = 75;
-            numericGoalPercent.Location = new Point(190, 73);
+            numericGoalPercent.Location = new Point(190, 118);
             numericGoalPercent.ValueChanged += new EventHandler(goal_ValueChanged);
 
             labelStats = new Label();
             labelStats.BorderStyle = BorderStyle.Fixed3D;
-            labelStats.Location = new Point(40, 120);
+            labelStats.Location = new Point(40, 155);
             labelStats.Size = new Size(430, 250);
             labelStats.Font = new Font("Microsoft Sans Serif", 11F);
 
+            tabPageStats.Controls.Add(labelTitle);
+            tabPageStats.Controls.Add(labelExplain);
             tabPageStats.Controls.Add(labelGoal1);
             tabPageStats.Controls.Add(numericGoalMinutes);
             tabPageStats.Controls.Add(labelGoal2);
@@ -833,24 +855,7 @@ namespace ECE2310Project
             UpdateStats();
         }
 
-        private void buttonFocusFullScreen_Click(object sender, EventArgs e)
-        {
-            if (FormBorderStyle != System.Windows.Forms.FormBorderStyle.None)
-            {
-                oldBorderStyle = FormBorderStyle;
-                oldWindowState = WindowState;
-                FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                WindowState = FormWindowState.Maximized;
-                tabControl.SelectedTab = tabPageFocus;
-                buttonFocusFullScreen.Text = "Exit Full Screen";
-            }
-            else
-            {
-                FormBorderStyle = oldBorderStyle;
-                WindowState = oldWindowState;
-                buttonFocusFullScreen.Text = "Full Screen";
-            }
-        }
+        
 
         private void timerFocus_Tick(object sender, EventArgs e)
         {
@@ -907,7 +912,7 @@ namespace ECE2310Project
         {
             if (textBoxNoteTitle.Text == "")
             {
-                MessageBox.Show("Please type a title for the note.");
+                MessageBox.Show("Please type a title for the note.", "Missing Title", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -917,14 +922,24 @@ namespace ECE2310Project
                 attachedEvent = comboBoxNoteEvents.SelectedItem.ToString();
             }
 
-            if (listBoxNotes.SelectedIndex >= 0)
+            bool isEditing = listBoxNotes.SelectedIndex >= 0 &&
+                             notes[listBoxNotes.SelectedIndex].Title == textBoxNoteTitle.Text;
+
+            if (isEditing)
             {
-                notes[listBoxNotes.SelectedIndex].Title = textBoxNoteTitle.Text;
                 notes[listBoxNotes.SelectedIndex].Words = richTextBoxNote.Text;
                 notes[listBoxNotes.SelectedIndex].AttachedEvent = attachedEvent;
             }
             else
             {
+                for (int i = 0; i < notes.Count; i++)
+                {
+                    if (notes[i].Title == textBoxNoteTitle.Text)
+                    {
+                        MessageBox.Show("A note with the title \"" + textBoxNoteTitle.Text + "\" already exists. Please use a different title.", "Duplicate Title", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
                 notes.Add(new StudentNote(textBoxNoteTitle.Text, richTextBoxNote.Text, attachedEvent));
             }
 
