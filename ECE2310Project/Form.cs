@@ -1033,8 +1033,10 @@ namespace ECE2310Project
 
         private void timerCalendar_Tick(object sender, EventArgs e)
         {
+            timerCalendar.Stop();
             Notification();
             BuildCalendar(drawCalendar);
+            timerCalendar.Start();
         }
 
         private void listBoxEvents_SelectedIndexChanged(object sender, EventArgs e)
