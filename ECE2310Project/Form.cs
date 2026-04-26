@@ -403,7 +403,15 @@ namespace ECE2310Project
 
         private void AddEvent()
         {
-            if (DateTime.Compare(dateTimePickerEventDate.Value, DateTime.Now) < 0 && !checkBoxMakePastEvents.Checked)
+            DateTime eventDateTime = new DateTime(
+                dateTimePickerEventDate.Value.Year,
+                dateTimePickerEventDate.Value.Month,
+                dateTimePickerEventDate.Value.Day,
+                (int)numericUpDownTimeHour.Value,
+                (int)numericUpDownTimeMinute.Value,
+                0);
+
+            if (DateTime.Compare(eventDateTime, DateTime.Now) < 0 && !checkBoxMakePastEvents.Checked)
             {
                 MessageBox.Show("The date of the event cannot be in the past. Please select a valid date or change the setting to allow past dates.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
