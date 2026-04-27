@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
@@ -17,6 +17,8 @@ namespace ECE2310Project
         protected Calendar Cal = CultureInfo.InvariantCulture.Calendar;
         public string Name { get; set; }
         public string Discription { get; set; }
+        public bool IsFinished { get; set; }
+        public string Note { get; set; }
 
         public CalendarEvent(string name, int year, int month, int day, int hour = 0, int minute = 0, string discription = "")
         {
@@ -30,12 +32,14 @@ namespace ECE2310Project
             }
             Name = name;
             Discription = discription;
+            IsFinished = false;
+            Note = "";
         }
 
         public int GetDayOfMonth() => Cal.GetDayOfMonth(DateInfo);
         public string GetDayOfWeek() => Cal.GetDayOfWeek(DateInfo).ToString();
         public int GetDatOfYear() => Cal.GetDayOfYear(DateInfo);
-        public int GetDaysInMonth() => Cal.GetDaysInMonth(DateInfo.Year,DateInfo.Month);
+        public int GetDaysInMonth() => Cal.GetDaysInMonth(DateInfo.Year, DateInfo.Month);
         public int GetDaysInYear() => Cal.GetDaysInYear(DateInfo.Year);
         public int GetLeapMonth() => Cal.GetLeapMonth(DateInfo.Year); //might delete later
         public bool IsLeapDay() => Cal.IsLeapDay(DateInfo.Year, DateInfo.Month, DateInfo.Day);
@@ -75,6 +79,29 @@ namespace ECE2310Project
             {
                 DateInfo = new DateTime(year + 1, DateInfo.Month, DateInfo.Day, DateInfo.Hour, DateInfo.Minute, 0, new GregorianCalendar());
             }
+        }
+    }
+
+    public class StudentNote
+    {
+        public string Title { get; set; }
+        public string Words { get; set; }
+        public string AttachedEvent { get; set; }
+
+        public StudentNote(string title, string words, string attachedEvent)
+        {
+            Title = title;
+            Words = words;
+            AttachedEvent = attachedEvent;
+        }
+
+        public override string ToString()
+        {
+            if (AttachedEvent == "")
+            {
+                return Title;
+            }
+            return Title + " (" + AttachedEvent + ")";
         }
     }
 }
