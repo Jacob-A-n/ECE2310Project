@@ -8,3 +8,5 @@
 4/17 An : 
 	Created a system that takes a date and outputs a array of days for a calendar with a 7*6 grid where the first row is always the first week similar to how windows displays calendar in the task bar
 	This update is in the form of DrawCalendar.cs
+4/26 Akram:
+	Changed attributes to allow for the Event editor to change from yearly to nonrecurring and vice versa. Also implemented labels on the GUI event list to show if an event is a yearly recurring one.
