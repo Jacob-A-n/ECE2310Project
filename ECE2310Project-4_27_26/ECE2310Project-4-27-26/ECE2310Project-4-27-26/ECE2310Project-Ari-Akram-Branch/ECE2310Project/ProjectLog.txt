@@ -10,3 +10,5 @@
 	This update is in the form of DrawCalendar.cs
 4/26 Akram:
 	Changed attributes to allow for the Event editor to change from yearly to nonrecurring and vice versa. Also implemented labels on the GUI event list to show if an event is a yearly recurring one.
+4/27 Akram:
+	Added different reccurence time frames such as daily, weekly, monthly, and just once. The reccurence is modifiable in the edit event tab and will reflect on the calender GUI and the event list.
