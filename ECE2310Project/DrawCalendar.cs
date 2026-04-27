@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
@@ -24,7 +24,7 @@ namespace ECE2310Project
         {
             DateWindow = new DateTime(year, month, 1, 0, 0, 0, new GregorianCalendar());
         }
-        
+
         public DrawCalendar(DateTime dateWindow)
         {
             DateWindow = dateWindow;
@@ -55,7 +55,7 @@ namespace ECE2310Project
                 case ("Sunday"): StartOfMonth = 0; break;
                 case ("Monday"): StartOfMonth = 1; break;
                 case ("Tuesday"): StartOfMonth = 2; break;
-                case ("Wednesday"):  StartOfMonth = 3; break;
+                case ("Wednesday"): StartOfMonth = 3; break;
                 case ("Thursday"): StartOfMonth = 4; break;
                 case ("Friday"): StartOfMonth = 5; break;
                 case ("Saturday"): StartOfMonth = 6; break;
@@ -76,7 +76,7 @@ namespace ECE2310Project
                 isDayOfMonth[StartOfMonth + i] = true;
             }
 
-            for (int i = EndOfMonth, j = 1 ; i < calendarNumbers.Length; i++, j++)
+            for (int i = EndOfMonth, j = 1; i < calendarNumbers.Length; i++, j++)
             {
                 calendarNumbers[i] = j;
             }
@@ -114,7 +114,7 @@ namespace ECE2310Project
             }
 
             string output = $"{month} {DateWindow.Year}\nS  M  T  W  T  F  S\n";
-            for (int i = 0; i < calendarNumbers.Length; i++) 
+            for (int i = 0; i < calendarNumbers.Length; i++)
             {
                 if (calendarNumbers[i] > 9)
                 {
@@ -124,7 +124,7 @@ namespace ECE2310Project
                 {
                     output += $"{calendarNumbers[i]}  ";
                 }
-                if (((i+1)%7) == 0)
+                if (((i + 1) % 7) == 0)
                 {
                     output += "\n";
                 }
