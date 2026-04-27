@@ -15,17 +15,14 @@ namespace ECE2310Project
     {
         public DateTime DateWindow { get; set; }
         private Calendar Cal = CultureInfo.InvariantCulture.Calendar;
-        private int year;
-        private int month;
-        private int[] calendarNumbers = new int[42];
+        public int[] calendarNumbers = new int[42];
+        public bool[] isDayOfMonth = new bool[42];
         public int StartOfMonth { get; set; }
         public int EndOfMonth { get; set; }
 
         public DrawCalendar(int year, int month)
         {
             DateWindow = new DateTime(year, month, 1, 0, 0, 0, new GregorianCalendar());
-            this.year = year;
-            this.month = month;
         }
         
         public DrawCalendar(DateTime dateWindow)
@@ -33,23 +30,25 @@ namespace ECE2310Project
             DateWindow = dateWindow;
         }
 
-        public DrawCalendar() //BROKEN DONT USE // SETS TIME TO YEAR 0 // CAUSES ERRORS
+        public DrawCalendar()
         {
-            DateWindow = DateTime.Now;
+            DateWindow = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0, new GregorianCalendar());
         }
 
         public void Update(int year, int month)
         {
             DateWindow = new DateTime(year, month, 1, 0, 0, 0, new GregorianCalendar());
-            this.year = year;
-            this.month = month;
         }
 
         //updates list to use to display dates
-        private void ArrangeCalendar(DayOfWeek day)
+        public void ArrangeCalendar(DayOfWeek day)
         {
             StartOfMonth = 0;
             EndOfMonth = 0;
+            for (int i = 0; i < isDayOfMonth.Length; i++)
+            {
+                isDayOfMonth[i] = false;
+            }
 
             switch (day.ToString()) //finds which day is start of the month
             {
@@ -62,7 +61,7 @@ namespace ECE2310Project
                 case ("Saturday"): StartOfMonth = 6; break;
             }
 
-            EndOfMonth = StartOfMonth + Cal.GetDaysInMonth(year, month);
+            EndOfMonth = StartOfMonth + Cal.GetDaysInMonth(DateWindow.Year, DateWindow.Month);
 
             DateWindow = Cal.AddDays(DateWindow, -1); //gets last month //cannot use Cal.GetDaysInMonth() directly incase month was janurary; causes error
             for (int i = Cal.GetDaysInMonth(DateWindow.Year, DateWindow.Month), j = StartOfMonth - 1; i > Cal.GetDaysInMonth(DateWindow.Year, DateWindow.Month) - StartOfMonth; i--, j--)
@@ -74,12 +73,23 @@ namespace ECE2310Project
             for (int i = 0; i < Cal.GetDaysInMonth(DateWindow.Year, DateWindow.Month); i++)
             {
                 calendarNumbers[StartOfMonth + i] = i + 1;
+                isDayOfMonth[StartOfMonth + i] = true;
             }
 
             for (int i = EndOfMonth, j = 1 ; i < calendarNumbers.Length; i++, j++)
             {
                 calendarNumbers[i] = j;
             }
+        }
+
+        public void AddMonth()
+        {
+            DateWindow = Cal.AddMonths(DateWindow, 1);
+        }
+
+        public void SubtractMonth()
+        {
+            DateWindow = Cal.AddMonths(DateWindow, -1);
         }
 
         public override string ToString()
@@ -103,7 +113,7 @@ namespace ECE2310Project
                 case (12): month = "December"; break;
             }
 
-            string output = $"{month} {year}\nS  M  T  W  T  F  S\n";
+            string output = $"{month} {DateWindow.Year}\nS  M  T  W  T  F  S\n";
             for (int i = 0; i < calendarNumbers.Length; i++) 
             {
                 if (calendarNumbers[i] > 9)
