@@ -1,4 +1,4 @@
-﻿namespace ECE2310Project
+namespace ECE2310Project
 {
     partial class Form
     {
@@ -62,20 +62,13 @@
             this.groupBoxEditProperties = new System.Windows.Forms.GroupBox();
             this.checkBoxEditRecurringEvent = new System.Windows.Forms.CheckBox();
             this.buttonSaveEventChanges = new System.Windows.Forms.Button();
-            this.labelEditEvent6 = new System.Windows.Forms.Label();
-            this.labelEditEvent5 = new System.Windows.Forms.Label();
             this.numericUpDownEditTimeMinute = new System.Windows.Forms.NumericUpDown();
-            this.labelEditEvent4 = new System.Windows.Forms.Label();
             this.numericUpDownEditTimeHour = new System.Windows.Forms.NumericUpDown();
             this.dateTimePickerEditEventDate = new System.Windows.Forms.DateTimePicker();
-            this.labelEditEvent3 = new System.Windows.Forms.Label();
             this.textBoxEditEventDescription = new System.Windows.Forms.RichTextBox();
-            this.labelEditEvent2 = new System.Windows.Forms.Label();
-            this.labelEditEvent1 = new System.Windows.Forms.Label();
             this.textBoxEditEventName = new System.Windows.Forms.TextBox();
             this.listBoxEditEvents = new System.Windows.Forms.ListBox();
             this.labelEditPickEvent = new System.Windows.Forms.Label();
-            this.buttonFinishEvent = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.labelDescription = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -176,37 +169,6 @@
             this.textBoxMonth = new System.Windows.Forms.TextBox();
             this.timerCalendar = new System.Windows.Forms.Timer(this.components);
             this.checkBoxMakePastEvents = new System.Windows.Forms.CheckBox();
-            this.tabPageFocus = new System.Windows.Forms.TabPage();
-            this.labelFocusModeTitle = new System.Windows.Forms.Label();
-            this.labelFocusSubtitle = new System.Windows.Forms.Label();
-            this.labelFocusTime = new System.Windows.Forms.Label();
-            this.labelFocusMode = new System.Windows.Forms.Label();
-            this.radioTimer = new System.Windows.Forms.RadioButton();
-            this.radioStopWatch = new System.Windows.Forms.RadioButton();
-            this.labelFocusDuration = new System.Windows.Forms.Label();
-            this.numericFocusMinutes = new System.Windows.Forms.NumericUpDown();
-            this.buttonFocusStart = new System.Windows.Forms.Button();
-            this.buttonFocusStop = new System.Windows.Forms.Button();
-            this.tabPageStats = new System.Windows.Forms.TabPage();
-            this.labelStatsTitle = new System.Windows.Forms.Label();
-            this.labelStatsExplain = new System.Windows.Forms.Label();
-            this.labelStatsGoal1 = new System.Windows.Forms.Label();
-            this.numericGoalMinutes = new System.Windows.Forms.NumericUpDown();
-            this.labelStatsGoal2 = new System.Windows.Forms.Label();
-            this.numericGoalPercent = new System.Windows.Forms.NumericUpDown();
-            this.labelStats = new System.Windows.Forms.Label();
-            this.tabPageNotes = new System.Windows.Forms.TabPage();
-            this.listBoxNotes = new System.Windows.Forms.ListBox();
-            this.labelNotesTitle = new System.Windows.Forms.Label();
-            this.textBoxNoteTitle = new System.Windows.Forms.TextBox();
-            this.labelNotesAttach = new System.Windows.Forms.Label();
-            this.comboBoxNoteEvents = new System.Windows.Forms.ComboBox();
-            this.richTextBoxNote = new System.Windows.Forms.RichTextBox();
-            this.buttonSaveNote = new System.Windows.Forms.Button();
-            this.buttonNewNote = new System.Windows.Forms.Button();
-            this.buttonDeleteNote = new System.Windows.Forms.Button();
-            this.labelNoteBody = new System.Windows.Forms.Label();
-            this.timerFocus = new System.Windows.Forms.Timer(this.components);
             this.tabControl.SuspendLayout();
             this.tabPageCalendar.SuspendLayout();
             this.tabControlInCalendar.SuspendLayout();
@@ -219,26 +181,18 @@
             this.groupBox1.SuspendLayout();
             this.groupBoxAppearance.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.groupBoxEditEvent.SuspendLayout();
-            this.groupBoxEditProperties.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditTimeMinute)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditTimeHour)).BeginInit();
-            this.tabPageFocus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericFocusMinutes)).BeginInit();
-            this.tabPageStats.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericGoalMinutes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericGoalPercent)).BeginInit();
-            this.tabPageNotes.SuspendLayout();
             this.SuspendLayout();
+            this.labelEditEvent6 = new System.Windows.Forms.Label();
+            this.labelEditEvent5 = new System.Windows.Forms.Label();
+            this.labelEditEvent4 = new System.Windows.Forms.Label();
+            this.labelEditEvent3 = new System.Windows.Forms.Label();
+            this.labelEditEvent2 = new System.Windows.Forms.Label();
+            this.labelEditEvent1 = new System.Windows.Forms.Label();
             // 
             // tabControl
             // 
             this.tabControl.Alignment = System.Windows.Forms.TabAlignment.Left;
             this.tabControl.Controls.Add(this.tabPageCalendar);
-            this.tabControl.Controls.Add(this.tabPageFocus);
-            this.tabControl.Controls.Add(this.tabPageStats);
-            this.tabControl.Controls.Add(this.tabPageNotes);
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
@@ -476,7 +430,7 @@
             // 
             this.numericUpDownTimeMinute.Location = new System.Drawing.Point(108, 248);
             this.numericUpDownTimeMinute.Maximum = new decimal(new int[] {
-            60,
+            59,
             0,
             0,
             0});
@@ -498,7 +452,7 @@
             // 
             this.numericUpDownTimeHour.Location = new System.Drawing.Point(10, 246);
             this.numericUpDownTimeHour.Maximum = new decimal(new int[] {
-            24,
+            23,
             0,
             0,
             0});
@@ -639,7 +593,6 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.buttonFinishEvent);
             this.tabPage3.Controls.Add(this.buttonDelete);
             this.tabPage3.Controls.Add(this.labelDescription);
             this.tabPage3.Controls.Add(this.label1);
@@ -651,18 +604,218 @@
             this.tabPage3.Text = "Events";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // buttonFinishEvent
+            // tabPage4
             // 
-            this.buttonFinishEvent.BackColor = System.Drawing.Color.LightGreen;
-            this.buttonFinishEvent.Enabled = false;
-            this.buttonFinishEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.buttonFinishEvent.Location = new System.Drawing.Point(8, 374);
-            this.buttonFinishEvent.Name = "buttonFinishEvent";
-            this.buttonFinishEvent.Size = new System.Drawing.Size(235, 25);
-            this.buttonFinishEvent.TabIndex = 4;
-            this.buttonFinishEvent.Text = "Mark Selected Done";
-            this.buttonFinishEvent.UseVisualStyleBackColor = false;
-            this.buttonFinishEvent.Click += new System.EventHandler(this.buttonFinishEvent_Click);
+            this.tabPage4.Controls.Add(this.groupBoxEditEvent);
+            this.tabPage4.Controls.Add(this.listBoxEditEvents);
+            this.tabPage4.Controls.Add(this.labelEditPickEvent);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(252, 557);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Edit Event";
+            this.tabPage4.UseVisualStyleBackColor = true;
+
+            // 
+            // labelEditPickEvent
+            // 
+            this.labelEditPickEvent.AutoSize = true;
+            this.labelEditPickEvent.Location = new System.Drawing.Point(6, 8);
+            this.labelEditPickEvent.Name = "labelEditPickEvent";
+            this.labelEditPickEvent.Size = new System.Drawing.Size(111, 13);
+            this.labelEditPickEvent.TabIndex = 0;
+            this.labelEditPickEvent.Text = "Select event to edit:";
+
+            // 
+            // listBoxEditEvents
+            // 
+            this.listBoxEditEvents.FormattingEnabled = true;
+            this.listBoxEditEvents.Location = new System.Drawing.Point(6, 24);
+            this.listBoxEditEvents.Name = "listBoxEditEvents";
+            this.listBoxEditEvents.Size = new System.Drawing.Size(240, 121);
+            this.listBoxEditEvents.TabIndex = 1;
+            this.listBoxEditEvents.SelectedIndexChanged += new System.EventHandler(this.listBoxEditEvents_SelectedIndexChanged);
+
+            // 
+            // groupBoxEditEvent
+            // 
+            this.groupBoxEditEvent.Controls.Add(this.groupBoxEditProperties);
+            this.groupBoxEditEvent.Controls.Add(this.buttonSaveEventChanges);
+            this.groupBoxEditEvent.Controls.Add(this.labelEditEvent6);
+            this.groupBoxEditEvent.Controls.Add(this.labelEditEvent5);
+            this.groupBoxEditEvent.Controls.Add(this.numericUpDownEditTimeMinute);
+            this.groupBoxEditEvent.Controls.Add(this.labelEditEvent4);
+            this.groupBoxEditEvent.Controls.Add(this.numericUpDownEditTimeHour);
+            this.groupBoxEditEvent.Controls.Add(this.dateTimePickerEditEventDate);
+            this.groupBoxEditEvent.Controls.Add(this.labelEditEvent3);
+            this.groupBoxEditEvent.Controls.Add(this.textBoxEditEventDescription);
+            this.groupBoxEditEvent.Controls.Add(this.labelEditEvent2);
+            this.groupBoxEditEvent.Controls.Add(this.labelEditEvent1);
+            this.groupBoxEditEvent.Controls.Add(this.textBoxEditEventName);
+            this.groupBoxEditEvent.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxEditEvent.Location = new System.Drawing.Point(6, 160);
+            this.groupBoxEditEvent.Name = "groupBoxEditEvent";
+            this.groupBoxEditEvent.Size = new System.Drawing.Size(241, 391);
+            this.groupBoxEditEvent.TabIndex = 2;
+            this.groupBoxEditEvent.TabStop = false;
+            this.groupBoxEditEvent.Text = "Edit Event";
+
+            // 
+            // groupBoxEditProperties
+            // 
+            this.groupBoxEditProperties.Controls.Add(this.checkBoxEditRecurringEvent);
+            this.groupBoxEditProperties.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.groupBoxEditProperties.Location = new System.Drawing.Point(10, 281);
+            this.groupBoxEditProperties.Name = "groupBoxEditProperties";
+            this.groupBoxEditProperties.Size = new System.Drawing.Size(221, 55);
+            this.groupBoxEditProperties.TabIndex = 14;
+            this.groupBoxEditProperties.TabStop = false;
+            this.groupBoxEditProperties.Text = "Properties";
+
+            // 
+            // checkBoxEditRecurringEvent
+            // 
+            this.checkBoxEditRecurringEvent.AutoSize = true;
+            this.checkBoxEditRecurringEvent.Location = new System.Drawing.Point(6, 23);
+            this.checkBoxEditRecurringEvent.Name = "checkBoxEditRecurringEvent";
+            this.checkBoxEditRecurringEvent.Size = new System.Drawing.Size(110, 23);
+            this.checkBoxEditRecurringEvent.TabIndex = 0;
+            this.checkBoxEditRecurringEvent.Text = "Repeat yearly";
+            this.checkBoxEditRecurringEvent.UseVisualStyleBackColor = true;
+
+            // 
+            // buttonSaveEventChanges
+            // 
+            this.buttonSaveEventChanges.Enabled = false;
+            this.buttonSaveEventChanges.Location = new System.Drawing.Point(16, 342);
+            this.buttonSaveEventChanges.Name = "buttonSaveEventChanges";
+            this.buttonSaveEventChanges.Size = new System.Drawing.Size(197, 38);
+            this.buttonSaveEventChanges.TabIndex = 13;
+            this.buttonSaveEventChanges.Text = "Save Changes";
+            this.buttonSaveEventChanges.UseVisualStyleBackColor = true;
+            this.buttonSaveEventChanges.Click += new System.EventHandler(this.buttonSaveEventChanges_Click);
+
+            // 
+            // labelEditEvent6
+            // 
+            this.labelEditEvent6.AutoSize = true;
+            this.labelEditEvent6.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.labelEditEvent6.Location = new System.Drawing.Point(160, 252);
+            this.labelEditEvent6.Name = "labelEditEvent6";
+            this.labelEditEvent6.Size = new System.Drawing.Size(53, 19);
+            this.labelEditEvent6.TabIndex = 12;
+            this.labelEditEvent6.Text = "Minute";
+
+            // 
+            // labelEditEvent5
+            // 
+            this.labelEditEvent5.AutoSize = true;
+            this.labelEditEvent5.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.labelEditEvent5.Location = new System.Drawing.Point(62, 250);
+            this.labelEditEvent5.Name = "labelEditEvent5";
+            this.labelEditEvent5.Size = new System.Drawing.Size(40, 19);
+            this.labelEditEvent5.TabIndex = 11;
+            this.labelEditEvent5.Text = "Hour";
+
+            // 
+            // numericUpDownEditTimeMinute
+            // 
+            this.numericUpDownEditTimeMinute.Location = new System.Drawing.Point(108, 248);
+            this.numericUpDownEditTimeMinute.Maximum = new decimal(new int[] {
+59,
+0,
+0,
+0});
+            this.numericUpDownEditTimeMinute.Name = "numericUpDownEditTimeMinute";
+            this.numericUpDownEditTimeMinute.Size = new System.Drawing.Size(46, 27);
+            this.numericUpDownEditTimeMinute.TabIndex = 9;
+
+            // 
+            // labelEditEvent4
+            // 
+            this.labelEditEvent4.AutoSize = true;
+            this.labelEditEvent4.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.labelEditEvent4.Location = new System.Drawing.Point(6, 224);
+            this.labelEditEvent4.Name = "labelEditEvent4";
+            this.labelEditEvent4.Size = new System.Drawing.Size(38, 19);
+            this.labelEditEvent4.TabIndex = 8;
+            this.labelEditEvent4.Text = "Time";
+
+            // 
+            // numericUpDownEditTimeHour
+            // 
+            this.numericUpDownEditTimeHour.Location = new System.Drawing.Point(10, 246);
+            this.numericUpDownEditTimeHour.Maximum = new decimal(new int[] {
+23,
+0,
+0,
+0});
+            this.numericUpDownEditTimeHour.Name = "numericUpDownEditTimeHour";
+            this.numericUpDownEditTimeHour.Size = new System.Drawing.Size(46, 27);
+            this.numericUpDownEditTimeHour.TabIndex = 7;
+
+            // 
+            // dateTimePickerEditEventDate
+            // 
+            this.dateTimePickerEditEventDate.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F);
+            this.dateTimePickerEditEventDate.Location = new System.Drawing.Point(6, 199);
+            this.dateTimePickerEditEventDate.Name = "dateTimePickerEditEventDate";
+            this.dateTimePickerEditEventDate.Size = new System.Drawing.Size(225, 22);
+            this.dateTimePickerEditEventDate.TabIndex = 6;
+
+            // 
+            // labelEditEvent3
+            // 
+            this.labelEditEvent3.AutoSize = true;
+            this.labelEditEvent3.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.labelEditEvent3.Location = new System.Drawing.Point(6, 177);
+            this.labelEditEvent3.Name = "labelEditEvent3";
+            this.labelEditEvent3.Size = new System.Drawing.Size(38, 19);
+            this.labelEditEvent3.TabIndex = 5;
+            this.labelEditEvent3.Text = "Date";
+
+            // 
+            // textBoxEditEventDescription
+            // 
+            this.textBoxEditEventDescription.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F);
+            this.textBoxEditEventDescription.Location = new System.Drawing.Point(6, 97);
+            this.textBoxEditEventDescription.Name = "textBoxEditEventDescription";
+            this.textBoxEditEventDescription.Size = new System.Drawing.Size(225, 77);
+            this.textBoxEditEventDescription.TabIndex = 4;
+            this.textBoxEditEventDescription.Text = "";
+
+            // 
+            // labelEditEvent2
+            // 
+            this.labelEditEvent2.AutoSize = true;
+            this.labelEditEvent2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.labelEditEvent2.Location = new System.Drawing.Point(6, 74);
+            this.labelEditEvent2.Name = "labelEditEvent2";
+            this.labelEditEvent2.Size = new System.Drawing.Size(79, 19);
+            this.labelEditEvent2.TabIndex = 3;
+            this.labelEditEvent2.Text = "Description";
+
+            // 
+            // labelEditEvent1
+            // 
+            this.labelEditEvent1.AutoSize = true;
+            this.labelEditEvent1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.labelEditEvent1.Location = new System.Drawing.Point(6, 27);
+            this.labelEditEvent1.Name = "labelEditEvent1";
+            this.labelEditEvent1.Size = new System.Drawing.Size(46, 19);
+            this.labelEditEvent1.TabIndex = 1;
+            this.labelEditEvent1.Text = "Name";
+
+            // 
+            // textBoxEditEventName
+            // 
+            this.textBoxEditEventName.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F);
+            this.textBoxEditEventName.Location = new System.Drawing.Point(6, 49);
+            this.textBoxEditEventName.Name = "textBoxEditEventName";
+            this.textBoxEditEventName.Size = new System.Drawing.Size(229, 22);
+            this.textBoxEditEventName.TabIndex = 0;
+            this.textBoxEditEventName.TextChanged += new System.EventHandler(this.textBoxEditEventName_TextChanged);
             // 
             // buttonDelete
             // 
@@ -1569,202 +1722,6 @@
             this.textBoxMonth.Text = "April, 2026";
             this.textBoxMonth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.groupBoxEditEvent);
-            this.tabPage4.Controls.Add(this.listBoxEditEvents);
-            this.tabPage4.Controls.Add(this.labelEditPickEvent);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(252, 557);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Edit Event";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // labelEditPickEvent
-            // 
-            this.labelEditPickEvent.AutoSize = true;
-            this.labelEditPickEvent.Location = new System.Drawing.Point(6, 8);
-            this.labelEditPickEvent.Name = "labelEditPickEvent";
-            this.labelEditPickEvent.Size = new System.Drawing.Size(111, 13);
-            this.labelEditPickEvent.TabIndex = 0;
-            this.labelEditPickEvent.Text = "Select event to edit:";
-            // 
-            // listBoxEditEvents
-            // 
-            this.listBoxEditEvents.FormattingEnabled = true;
-            this.listBoxEditEvents.Location = new System.Drawing.Point(6, 24);
-            this.listBoxEditEvents.Name = "listBoxEditEvents";
-            this.listBoxEditEvents.Size = new System.Drawing.Size(240, 121);
-            this.listBoxEditEvents.TabIndex = 1;
-            this.listBoxEditEvents.SelectedIndexChanged += new System.EventHandler(this.listBoxEditEvents_SelectedIndexChanged);
-            // 
-            // groupBoxEditEvent
-            // 
-            this.groupBoxEditEvent.Controls.Add(this.groupBoxEditProperties);
-            this.groupBoxEditEvent.Controls.Add(this.buttonSaveEventChanges);
-            this.groupBoxEditEvent.Controls.Add(this.labelEditEvent6);
-            this.groupBoxEditEvent.Controls.Add(this.labelEditEvent5);
-            this.groupBoxEditEvent.Controls.Add(this.numericUpDownEditTimeMinute);
-            this.groupBoxEditEvent.Controls.Add(this.labelEditEvent4);
-            this.groupBoxEditEvent.Controls.Add(this.numericUpDownEditTimeHour);
-            this.groupBoxEditEvent.Controls.Add(this.dateTimePickerEditEventDate);
-            this.groupBoxEditEvent.Controls.Add(this.labelEditEvent3);
-            this.groupBoxEditEvent.Controls.Add(this.textBoxEditEventDescription);
-            this.groupBoxEditEvent.Controls.Add(this.labelEditEvent2);
-            this.groupBoxEditEvent.Controls.Add(this.labelEditEvent1);
-            this.groupBoxEditEvent.Controls.Add(this.textBoxEditEventName);
-            this.groupBoxEditEvent.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxEditEvent.Location = new System.Drawing.Point(6, 160);
-            this.groupBoxEditEvent.Name = "groupBoxEditEvent";
-            this.groupBoxEditEvent.Size = new System.Drawing.Size(241, 391);
-            this.groupBoxEditEvent.TabIndex = 2;
-            this.groupBoxEditEvent.TabStop = false;
-            this.groupBoxEditEvent.Text = "Edit Event";
-            // 
-            // groupBoxEditProperties
-            // 
-            this.groupBoxEditProperties.Controls.Add(this.checkBoxEditRecurringEvent);
-            this.groupBoxEditProperties.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.groupBoxEditProperties.Location = new System.Drawing.Point(10, 281);
-            this.groupBoxEditProperties.Name = "groupBoxEditProperties";
-            this.groupBoxEditProperties.Size = new System.Drawing.Size(221, 55);
-            this.groupBoxEditProperties.TabIndex = 14;
-            this.groupBoxEditProperties.TabStop = false;
-            this.groupBoxEditProperties.Text = "Properties";
-            // 
-            // checkBoxEditRecurringEvent
-            // 
-            this.checkBoxEditRecurringEvent.AutoSize = true;
-            this.checkBoxEditRecurringEvent.Location = new System.Drawing.Point(6, 23);
-            this.checkBoxEditRecurringEvent.Name = "checkBoxEditRecurringEvent";
-            this.checkBoxEditRecurringEvent.Size = new System.Drawing.Size(110, 23);
-            this.checkBoxEditRecurringEvent.TabIndex = 0;
-            this.checkBoxEditRecurringEvent.Text = "Repeat yearly";
-            this.checkBoxEditRecurringEvent.UseVisualStyleBackColor = true;
-            // 
-            // buttonSaveEventChanges
-            // 
-            this.buttonSaveEventChanges.Enabled = false;
-            this.buttonSaveEventChanges.Location = new System.Drawing.Point(16, 342);
-            this.buttonSaveEventChanges.Name = "buttonSaveEventChanges";
-            this.buttonSaveEventChanges.Size = new System.Drawing.Size(197, 38);
-            this.buttonSaveEventChanges.TabIndex = 13;
-            this.buttonSaveEventChanges.Text = "Save Changes";
-            this.buttonSaveEventChanges.UseVisualStyleBackColor = true;
-            this.buttonSaveEventChanges.Click += new System.EventHandler(this.buttonSaveEventChanges_Click);
-            // 
-            // labelEditEvent6
-            // 
-            this.labelEditEvent6.AutoSize = true;
-            this.labelEditEvent6.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.labelEditEvent6.Location = new System.Drawing.Point(160, 252);
-            this.labelEditEvent6.Name = "labelEditEvent6";
-            this.labelEditEvent6.Size = new System.Drawing.Size(53, 19);
-            this.labelEditEvent6.TabIndex = 12;
-            this.labelEditEvent6.Text = "Minute";
-            // 
-            // labelEditEvent5
-            // 
-            this.labelEditEvent5.AutoSize = true;
-            this.labelEditEvent5.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.labelEditEvent5.Location = new System.Drawing.Point(62, 250);
-            this.labelEditEvent5.Name = "labelEditEvent5";
-            this.labelEditEvent5.Size = new System.Drawing.Size(40, 19);
-            this.labelEditEvent5.TabIndex = 11;
-            this.labelEditEvent5.Text = "Hour";
-            // 
-            // numericUpDownEditTimeMinute
-            // 
-            this.numericUpDownEditTimeMinute.Location = new System.Drawing.Point(108, 248);
-            this.numericUpDownEditTimeMinute.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.numericUpDownEditTimeMinute.Name = "numericUpDownEditTimeMinute";
-            this.numericUpDownEditTimeMinute.Size = new System.Drawing.Size(46, 27);
-            this.numericUpDownEditTimeMinute.TabIndex = 9;
-            // 
-            // labelEditEvent4
-            // 
-            this.labelEditEvent4.AutoSize = true;
-            this.labelEditEvent4.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.labelEditEvent4.Location = new System.Drawing.Point(6, 224);
-            this.labelEditEvent4.Name = "labelEditEvent4";
-            this.labelEditEvent4.Size = new System.Drawing.Size(38, 19);
-            this.labelEditEvent4.TabIndex = 8;
-            this.labelEditEvent4.Text = "Time";
-            // 
-            // numericUpDownEditTimeHour
-            // 
-            this.numericUpDownEditTimeHour.Location = new System.Drawing.Point(10, 246);
-            this.numericUpDownEditTimeHour.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.numericUpDownEditTimeHour.Name = "numericUpDownEditTimeHour";
-            this.numericUpDownEditTimeHour.Size = new System.Drawing.Size(46, 27);
-            this.numericUpDownEditTimeHour.TabIndex = 7;
-            // 
-            // dateTimePickerEditEventDate
-            // 
-            this.dateTimePickerEditEventDate.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F);
-            this.dateTimePickerEditEventDate.Location = new System.Drawing.Point(6, 199);
-            this.dateTimePickerEditEventDate.Name = "dateTimePickerEditEventDate";
-            this.dateTimePickerEditEventDate.Size = new System.Drawing.Size(225, 22);
-            this.dateTimePickerEditEventDate.TabIndex = 6;
-            // 
-            // labelEditEvent3
-            // 
-            this.labelEditEvent3.AutoSize = true;
-            this.labelEditEvent3.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.labelEditEvent3.Location = new System.Drawing.Point(6, 177);
-            this.labelEditEvent3.Name = "labelEditEvent3";
-            this.labelEditEvent3.Size = new System.Drawing.Size(38, 19);
-            this.labelEditEvent3.TabIndex = 5;
-            this.labelEditEvent3.Text = "Date";
-            // 
-            // textBoxEditEventDescription
-            // 
-            this.textBoxEditEventDescription.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F);
-            this.textBoxEditEventDescription.Location = new System.Drawing.Point(6, 97);
-            this.textBoxEditEventDescription.Name = "textBoxEditEventDescription";
-            this.textBoxEditEventDescription.Size = new System.Drawing.Size(225, 77);
-            this.textBoxEditEventDescription.TabIndex = 4;
-            this.textBoxEditEventDescription.Text = "";
-            // 
-            // labelEditEvent2
-            // 
-            this.labelEditEvent2.AutoSize = true;
-            this.labelEditEvent2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.labelEditEvent2.Location = new System.Drawing.Point(6, 74);
-            this.labelEditEvent2.Name = "labelEditEvent2";
-            this.labelEditEvent2.Size = new System.Drawing.Size(79, 19);
-            this.labelEditEvent2.TabIndex = 3;
-            this.labelEditEvent2.Text = "Description";
-            // 
-            // labelEditEvent1
-            // 
-            this.labelEditEvent1.AutoSize = true;
-            this.labelEditEvent1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.labelEditEvent1.Location = new System.Drawing.Point(6, 27);
-            this.labelEditEvent1.Name = "labelEditEvent1";
-            this.labelEditEvent1.Size = new System.Drawing.Size(46, 19);
-            this.labelEditEvent1.TabIndex = 1;
-            this.labelEditEvent1.Text = "Name";
-            // 
-            // textBoxEditEventName
-            // 
-            this.textBoxEditEventName.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F);
-            this.textBoxEditEventName.Location = new System.Drawing.Point(6, 49);
-            this.textBoxEditEventName.Name = "textBoxEditEventName";
-            this.textBoxEditEventName.Size = new System.Drawing.Size(229, 22);
-            this.textBoxEditEventName.TabIndex = 0;
-            this.textBoxEditEventName.TextChanged += new System.EventHandler(this.textBoxEditEventName_TextChanged);
-            // 
             // timerCalendar
             // 
             this.timerCalendar.Enabled = true;
@@ -1780,358 +1737,6 @@
             this.checkBoxMakePastEvents.TabIndex = 1;
             this.checkBoxMakePastEvents.Text = "Make Events in the past";
             this.checkBoxMakePastEvents.UseVisualStyleBackColor = true;
-            // 
-            // tabPageFocus
-            // 
-            this.tabPageFocus.BackColor = System.Drawing.Color.Black;
-            this.tabPageFocus.Controls.Add(this.labelFocusModeTitle);
-            this.tabPageFocus.Controls.Add(this.labelFocusSubtitle);
-            this.tabPageFocus.Controls.Add(this.labelFocusTime);
-            this.tabPageFocus.Controls.Add(this.labelFocusMode);
-            this.tabPageFocus.Controls.Add(this.labelFocusDuration);
-            this.tabPageFocus.Controls.Add(this.numericFocusMinutes);
-            this.tabPageFocus.Controls.Add(this.radioTimer);
-            this.tabPageFocus.Controls.Add(this.radioStopWatch);
-            this.tabPageFocus.Controls.Add(this.buttonFocusStart);
-            this.tabPageFocus.Controls.Add(this.buttonFocusStop);
-            this.tabPageFocus.Location = new System.Drawing.Point(23, 4);
-            this.tabPageFocus.Name = "tabPageFocus";
-            this.tabPageFocus.Size = new System.Drawing.Size(962, 585);
-            this.tabPageFocus.TabIndex = 1;
-            this.tabPageFocus.Text = "Focus";
-            // 
-            // labelFocusModeTitle
-            // 
-            this.labelFocusModeTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
-            this.labelFocusModeTitle.ForeColor = System.Drawing.Color.White;
-            this.labelFocusModeTitle.Location = new System.Drawing.Point(40, 35);
-            this.labelFocusModeTitle.Name = "labelFocusModeTitle";
-            this.labelFocusModeTitle.Size = new System.Drawing.Size(350, 45);
-            this.labelFocusModeTitle.TabIndex = 0;
-            this.labelFocusModeTitle.Text = "Focus Mode";
-            // 
-            // labelFocusSubtitle
-            // 
-            this.labelFocusSubtitle.ForeColor = System.Drawing.Color.Gray;
-            this.labelFocusSubtitle.Location = new System.Drawing.Point(42, 80);
-            this.labelFocusSubtitle.Name = "labelFocusSubtitle";
-            this.labelFocusSubtitle.Size = new System.Drawing.Size(400, 20);
-            this.labelFocusSubtitle.TabIndex = 1;
-            this.labelFocusSubtitle.Text = "Use the timer or stopwatch to track your study sessions.";
-            // 
-            // labelFocusTime
-            // 
-            this.labelFocusTime.Font = new System.Drawing.Font("Consolas", 36F, System.Drawing.FontStyle.Bold);
-            this.labelFocusTime.ForeColor = System.Drawing.Color.LightGreen;
-            this.labelFocusTime.Location = new System.Drawing.Point(40, 110);
-            this.labelFocusTime.Name = "labelFocusTime";
-            this.labelFocusTime.Size = new System.Drawing.Size(350, 70);
-            this.labelFocusTime.TabIndex = 2;
-            this.labelFocusTime.Text = "00:25:00";
-            // 
-            // labelFocusMode
-            // 
-            this.labelFocusMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.labelFocusMode.ForeColor = System.Drawing.Color.White;
-            this.labelFocusMode.Location = new System.Drawing.Point(45, 195);
-            this.labelFocusMode.Name = "labelFocusMode";
-            this.labelFocusMode.Size = new System.Drawing.Size(50, 20);
-            this.labelFocusMode.TabIndex = 3;
-            this.labelFocusMode.Text = "Mode";
-            // 
-            // radioTimer
-            // 
-            this.radioTimer.Checked = true;
-            this.radioTimer.ForeColor = System.Drawing.Color.White;
-            this.radioTimer.Location = new System.Drawing.Point(100, 195);
-            this.radioTimer.Name = "radioTimer";
-            this.radioTimer.Size = new System.Drawing.Size(80, 17);
-            this.radioTimer.TabIndex = 4;
-            this.radioTimer.TabStop = true;
-            this.radioTimer.Text = "Timer";
-            // 
-            // radioStopWatch
-            // 
-            this.radioStopWatch.ForeColor = System.Drawing.Color.White;
-            this.radioStopWatch.Location = new System.Drawing.Point(185, 195);
-            this.radioStopWatch.Name = "radioStopWatch";
-            this.radioStopWatch.Size = new System.Drawing.Size(100, 17);
-            this.radioStopWatch.TabIndex = 5;
-            this.radioStopWatch.Text = "Stopwatch";
-            // 
-            // labelFocusDuration
-            // 
-            this.labelFocusDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.labelFocusDuration.ForeColor = System.Drawing.Color.White;
-            this.labelFocusDuration.Location = new System.Drawing.Point(45, 230);
-            this.labelFocusDuration.Name = "labelFocusDuration";
-            this.labelFocusDuration.Size = new System.Drawing.Size(130, 20);
-            this.labelFocusDuration.TabIndex = 6;
-            this.labelFocusDuration.Text = "Duration (minutes)";
-            // 
-            // numericFocusMinutes
-            // 
-            this.numericFocusMinutes.Location = new System.Drawing.Point(185, 228);
-            this.numericFocusMinutes.Maximum = new decimal(new int[] {
-            240,
-            0,
-            0,
-            0});
-            this.numericFocusMinutes.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericFocusMinutes.Name = "numericFocusMinutes";
-            this.numericFocusMinutes.Size = new System.Drawing.Size(70, 20);
-            this.numericFocusMinutes.TabIndex = 7;
-            this.numericFocusMinutes.Value = new decimal(new int[] {
-            25,
-            0,
-            0,
-            0});
-            this.numericFocusMinutes.ValueChanged += new System.EventHandler(this.numericFocusMinutes_ValueChanged);
-            // 
-            // buttonFocusStart
-            // 
-            this.buttonFocusStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(120)))), ((int)(((byte)(40)))));
-            this.buttonFocusStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonFocusStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
-            this.buttonFocusStart.ForeColor = System.Drawing.Color.White;
-            this.buttonFocusStart.Location = new System.Drawing.Point(45, 275);
-            this.buttonFocusStart.Name = "buttonFocusStart";
-            this.buttonFocusStart.Size = new System.Drawing.Size(120, 45);
-            this.buttonFocusStart.TabIndex = 8;
-            this.buttonFocusStart.Text = "Start";
-            this.buttonFocusStart.UseVisualStyleBackColor = false;
-            this.buttonFocusStart.Click += new System.EventHandler(this.buttonFocusStart_Click);
-            // 
-            // buttonFocusStop
-            // 
-            this.buttonFocusStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.buttonFocusStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonFocusStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
-            this.buttonFocusStop.ForeColor = System.Drawing.Color.White;
-            this.buttonFocusStop.Location = new System.Drawing.Point(185, 275);
-            this.buttonFocusStop.Name = "buttonFocusStop";
-            this.buttonFocusStop.Size = new System.Drawing.Size(120, 45);
-            this.buttonFocusStop.TabIndex = 9;
-            this.buttonFocusStop.Text = "Stop";
-            this.buttonFocusStop.UseVisualStyleBackColor = false;
-            this.buttonFocusStop.Click += new System.EventHandler(this.buttonFocusStop_Click);
-            // 
-            // tabPageStats
-            // 
-            this.tabPageStats.Controls.Add(this.labelStatsTitle);
-            this.tabPageStats.Controls.Add(this.labelStatsExplain);
-            this.tabPageStats.Controls.Add(this.labelStatsGoal1);
-            this.tabPageStats.Controls.Add(this.numericGoalMinutes);
-            this.tabPageStats.Controls.Add(this.labelStatsGoal2);
-            this.tabPageStats.Controls.Add(this.numericGoalPercent);
-            this.tabPageStats.Controls.Add(this.labelStats);
-            this.tabPageStats.Location = new System.Drawing.Point(23, 4);
-            this.tabPageStats.Name = "tabPageStats";
-            this.tabPageStats.Size = new System.Drawing.Size(962, 585);
-            this.tabPageStats.TabIndex = 2;
-            this.tabPageStats.Text = "Stats";
-            this.tabPageStats.UseVisualStyleBackColor = true;
-            // 
-            // labelStatsTitle
-            // 
-            this.labelStatsTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
-            this.labelStatsTitle.Location = new System.Drawing.Point(40, 10);
-            this.labelStatsTitle.Name = "labelStatsTitle";
-            this.labelStatsTitle.Size = new System.Drawing.Size(400, 30);
-            this.labelStatsTitle.TabIndex = 0;
-            this.labelStatsTitle.Text = "Your Progress";
-            // 
-            // labelStatsExplain
-            // 
-            this.labelStatsExplain.ForeColor = System.Drawing.Color.Gray;
-            this.labelStatsExplain.Location = new System.Drawing.Point(40, 42);
-            this.labelStatsExplain.Name = "labelStatsExplain";
-            this.labelStatsExplain.Size = new System.Drawing.Size(450, 35);
-            this.labelStatsExplain.TabIndex = 1;
-            this.labelStatsExplain.Text = "Track how much time you spend studying and how many tasks you complete. Set goals " +
-    "below and see if you hit them.";
-            // 
-            // labelStatsGoal1
-            // 
-            this.labelStatsGoal1.Location = new System.Drawing.Point(40, 90);
-            this.labelStatsGoal1.Name = "labelStatsGoal1";
-            this.labelStatsGoal1.Size = new System.Drawing.Size(140, 20);
-            this.labelStatsGoal1.TabIndex = 2;
-            this.labelStatsGoal1.Text = "Focus goal (minutes)";
-            // 
-            // numericGoalMinutes
-            // 
-            this.numericGoalMinutes.Location = new System.Drawing.Point(190, 88);
-            this.numericGoalMinutes.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.numericGoalMinutes.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericGoalMinutes.Name = "numericGoalMinutes";
-            this.numericGoalMinutes.Size = new System.Drawing.Size(120, 20);
-            this.numericGoalMinutes.TabIndex = 3;
-            this.numericGoalMinutes.Value = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
-            this.numericGoalMinutes.ValueChanged += new System.EventHandler(this.goal_ValueChanged);
-            // 
-            // labelStatsGoal2
-            // 
-            this.labelStatsGoal2.Location = new System.Drawing.Point(40, 120);
-            this.labelStatsGoal2.Name = "labelStatsGoal2";
-            this.labelStatsGoal2.Size = new System.Drawing.Size(140, 20);
-            this.labelStatsGoal2.TabIndex = 4;
-            this.labelStatsGoal2.Text = "Task done goal (%)";
-            // 
-            // numericGoalPercent
-            // 
-            this.numericGoalPercent.Location = new System.Drawing.Point(190, 118);
-            this.numericGoalPercent.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericGoalPercent.Name = "numericGoalPercent";
-            this.numericGoalPercent.Size = new System.Drawing.Size(120, 20);
-            this.numericGoalPercent.TabIndex = 5;
-            this.numericGoalPercent.Value = new decimal(new int[] {
-            75,
-            0,
-            0,
-            0});
-            this.numericGoalPercent.ValueChanged += new System.EventHandler(this.goal_ValueChanged);
-            // 
-            // labelStats
-            // 
-            this.labelStats.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.labelStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.labelStats.Location = new System.Drawing.Point(40, 155);
-            this.labelStats.Name = "labelStats";
-            this.labelStats.Size = new System.Drawing.Size(430, 250);
-            this.labelStats.TabIndex = 6;
-            // 
-            // tabPageNotes
-            // 
-            this.tabPageNotes.Controls.Add(this.listBoxNotes);
-            this.tabPageNotes.Controls.Add(this.labelNotesTitle);
-            this.tabPageNotes.Controls.Add(this.textBoxNoteTitle);
-            this.tabPageNotes.Controls.Add(this.labelNotesAttach);
-            this.tabPageNotes.Controls.Add(this.comboBoxNoteEvents);
-            this.tabPageNotes.Controls.Add(this.richTextBoxNote);
-            this.tabPageNotes.Controls.Add(this.buttonSaveNote);
-            this.tabPageNotes.Controls.Add(this.buttonNewNote);
-            this.tabPageNotes.Controls.Add(this.buttonDeleteNote);
-            this.tabPageNotes.Controls.Add(this.labelNoteBody);
-            this.tabPageNotes.Location = new System.Drawing.Point(23, 4);
-            this.tabPageNotes.Name = "tabPageNotes";
-            this.tabPageNotes.Size = new System.Drawing.Size(962, 585);
-            this.tabPageNotes.TabIndex = 3;
-            this.tabPageNotes.Text = "Notes";
-            this.tabPageNotes.UseVisualStyleBackColor = true;
-            // 
-            // listBoxNotes
-            // 
-            this.listBoxNotes.FormattingEnabled = true;
-            this.listBoxNotes.Location = new System.Drawing.Point(25, 25);
-            this.listBoxNotes.Name = "listBoxNotes";
-            this.listBoxNotes.Size = new System.Drawing.Size(250, 251);
-            this.listBoxNotes.TabIndex = 0;
-            this.listBoxNotes.SelectedIndexChanged += new System.EventHandler(this.listBoxNotes_SelectedIndexChanged);
-            // 
-            // labelNotesTitle
-            // 
-            this.labelNotesTitle.AutoSize = true;
-            this.labelNotesTitle.Location = new System.Drawing.Point(300, 25);
-            this.labelNotesTitle.Name = "labelNotesTitle";
-            this.labelNotesTitle.Size = new System.Drawing.Size(27, 13);
-            this.labelNotesTitle.TabIndex = 1;
-            this.labelNotesTitle.Text = "Title";
-            // 
-            // textBoxNoteTitle
-            // 
-            this.textBoxNoteTitle.Location = new System.Drawing.Point(300, 45);
-            this.textBoxNoteTitle.Name = "textBoxNoteTitle";
-            this.textBoxNoteTitle.Size = new System.Drawing.Size(280, 20);
-            this.textBoxNoteTitle.TabIndex = 2;
-            // 
-            // labelNotesAttach
-            // 
-            this.labelNotesAttach.Location = new System.Drawing.Point(300, 80);
-            this.labelNotesAttach.Name = "labelNotesAttach";
-            this.labelNotesAttach.Size = new System.Drawing.Size(150, 20);
-            this.labelNotesAttach.TabIndex = 3;
-            this.labelNotesAttach.Text = "Attach to event";
-            // 
-            // comboBoxNoteEvents
-            // 
-            this.comboBoxNoteEvents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxNoteEvents.FormattingEnabled = true;
-            this.comboBoxNoteEvents.Location = new System.Drawing.Point(300, 100);
-            this.comboBoxNoteEvents.Name = "comboBoxNoteEvents";
-            this.comboBoxNoteEvents.Size = new System.Drawing.Size(280, 21);
-            this.comboBoxNoteEvents.TabIndex = 4;
-            // 
-            // richTextBoxNote
-            // 
-            this.richTextBoxNote.Location = new System.Drawing.Point(300, 145);
-            this.richTextBoxNote.Name = "richTextBoxNote";
-            this.richTextBoxNote.Size = new System.Drawing.Size(400, 210);
-            this.richTextBoxNote.TabIndex = 5;
-            this.richTextBoxNote.Text = "";
-            // 
-            // buttonSaveNote
-            // 
-            this.buttonSaveNote.Location = new System.Drawing.Point(300, 370);
-            this.buttonSaveNote.Name = "buttonSaveNote";
-            this.buttonSaveNote.Size = new System.Drawing.Size(115, 35);
-            this.buttonSaveNote.TabIndex = 6;
-            this.buttonSaveNote.Text = "Save Note";
-            this.buttonSaveNote.UseVisualStyleBackColor = true;
-            this.buttonSaveNote.Click += new System.EventHandler(this.buttonSaveNote_Click);
-            // 
-            // buttonNewNote
-            // 
-            this.buttonNewNote.Location = new System.Drawing.Point(430, 370);
-            this.buttonNewNote.Name = "buttonNewNote";
-            this.buttonNewNote.Size = new System.Drawing.Size(115, 35);
-            this.buttonNewNote.TabIndex = 7;
-            this.buttonNewNote.Text = "Clear";
-            this.buttonNewNote.UseVisualStyleBackColor = true;
-            this.buttonNewNote.Click += new System.EventHandler(this.buttonNewNote_Click);
-            // 
-            // buttonDeleteNote
-            // 
-            this.buttonDeleteNote.Location = new System.Drawing.Point(560, 370);
-            this.buttonDeleteNote.Name = "buttonDeleteNote";
-            this.buttonDeleteNote.Size = new System.Drawing.Size(115, 35);
-            this.buttonDeleteNote.TabIndex = 8;
-            this.buttonDeleteNote.Text = "Delete Note";
-            this.buttonDeleteNote.UseVisualStyleBackColor = true;
-            this.buttonDeleteNote.Click += new System.EventHandler(this.buttonDeleteNote_Click);
-            // 
-            // labelNoteBody
-            // 
-            this.labelNoteBody.Location = new System.Drawing.Point(25, 295);
-            this.labelNoteBody.Name = "labelNoteBody";
-            this.labelNoteBody.Size = new System.Drawing.Size(250, 120);
-            this.labelNoteBody.TabIndex = 9;
-            this.labelNoteBody.Text = "Select a note to view it, or type a title and note to save a new one.";
-            // 
-            // timerFocus
-            // 
-            this.timerFocus.Interval = 1000;
-            this.timerFocus.Tick += new System.EventHandler(this.timerFocus_Tick);
             // 
             // Form
             // 
@@ -2152,6 +1757,8 @@
             this.groupBoxProperties.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeMinute)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeHour)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditTimeMinute)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditTimeHour)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -2159,21 +1766,6 @@
             this.groupBoxAppearance.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.groupBoxEditEvent.ResumeLayout(false);
-            this.groupBoxEditEvent.PerformLayout();
-            this.groupBoxEditProperties.ResumeLayout(false);
-            this.groupBoxEditProperties.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditTimeMinute)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditTimeHour)).EndInit();
-            this.tabPageFocus.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericFocusMinutes)).EndInit();
-            this.tabPageStats.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericGoalMinutes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericGoalPercent)).EndInit();
-            this.tabPageNotes.ResumeLayout(false);
-            this.tabPageNotes.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2308,38 +1900,6 @@
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Label labelDescription;
         private System.Windows.Forms.CheckBox checkBoxMakePastEvents;
-        private System.Windows.Forms.TabPage tabPageFocus;
-        private System.Windows.Forms.Label labelFocusModeTitle;
-        private System.Windows.Forms.Label labelFocusSubtitle;
-        private System.Windows.Forms.Label labelFocusTime;
-        private System.Windows.Forms.Label labelFocusMode;
-        private System.Windows.Forms.RadioButton radioTimer;
-        private System.Windows.Forms.RadioButton radioStopWatch;
-        private System.Windows.Forms.Label labelFocusDuration;
-        private System.Windows.Forms.NumericUpDown numericFocusMinutes;
-        private System.Windows.Forms.Button buttonFocusStart;
-        private System.Windows.Forms.Button buttonFocusStop;
-        private System.Windows.Forms.TabPage tabPageStats;
-        private System.Windows.Forms.Label labelStatsTitle;
-        private System.Windows.Forms.Label labelStatsExplain;
-        private System.Windows.Forms.Label labelStatsGoal1;
-        private System.Windows.Forms.NumericUpDown numericGoalMinutes;
-        private System.Windows.Forms.Label labelStatsGoal2;
-        private System.Windows.Forms.NumericUpDown numericGoalPercent;
-        private System.Windows.Forms.Label labelStats;
-        private System.Windows.Forms.TabPage tabPageNotes;
-        private System.Windows.Forms.ListBox listBoxNotes;
-        private System.Windows.Forms.Label labelNotesTitle;
-        private System.Windows.Forms.TextBox textBoxNoteTitle;
-        private System.Windows.Forms.Label labelNotesAttach;
-        private System.Windows.Forms.ComboBox comboBoxNoteEvents;
-        private System.Windows.Forms.RichTextBox richTextBoxNote;
-        private System.Windows.Forms.Button buttonSaveNote;
-        private System.Windows.Forms.Button buttonNewNote;
-        private System.Windows.Forms.Button buttonDeleteNote;
-        private System.Windows.Forms.Label labelNoteBody;
-        private System.Windows.Forms.Timer timerFocus;
-        private System.Windows.Forms.Button buttonFinishEvent;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.GroupBox groupBoxEditEvent;
         private System.Windows.Forms.GroupBox groupBoxEditProperties;
