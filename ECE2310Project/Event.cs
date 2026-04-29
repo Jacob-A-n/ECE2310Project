@@ -9,6 +9,15 @@ using System.Windows.Forms;
 
 namespace ECE2310Project
 {
+    public enum RecurrenceFrequency
+    {
+        Once = 0,
+        Daily = 1,
+        Weekly = 2,
+        Monthly = 3,
+        Yearly = 4
+    }
+
     public class CalendarEvent //base class for Events
     {
         public bool NotificationSent = false;
@@ -47,11 +56,20 @@ namespace ECE2310Project
         public bool IsLeapYear() => Cal.IsLeapYear(DateInfo.Year);
     }
 
+    // Fix: ensure recurring constructor advances to next year when the date is in the past
     public class RecurringEvent : CalendarEvent
     {
-        public RecurringEvent(string name, int year, int month, int day, int hour = 0, int minute = 0, string discription = "") : base(name, year, month, day, hour, minute, discription)
+        // store recurrence frequency so UI and editors can show correct selection
+        public RecurrenceFrequency Frequency { get; set; } = RecurrenceFrequency.Yearly;
+
+        // constructor with optional frequency (defaults to Yearly so existing behavior preserved)
+        public RecurringEvent(string name, int year, int month, int day, int hour = 0, int minute = 0, string discription = "", RecurrenceFrequency frequency = RecurrenceFrequency.Yearly) 
+            : base(name, year, month, day, hour, minute, discription)
         {
-            if (DateTime.Compare(DateInfo, DateTime.Now) > 0) //if event is in the past, updates to next year
+            Frequency = frequency;
+
+            // if the provided date is in the past, advance to next occurrence (yearly behavior preserved)
+            if (DateTime.Compare(DateInfo, DateTime.Now) < 0)
             {
                 UpdateNotificationTime(year);
             }
@@ -59,6 +77,8 @@ namespace ECE2310Project
 
         public void UpdateNotificationTime()
         {
+            // currently only advances a year (keeps prior behavior).
+            // future: adjust according to Frequency (Daily/Weekly/Monthly) if needed.
             if (DateTime.IsLeapYear(DateInfo.Year + 1) && DateInfo.Month == 2 && DateInfo.Day == 29)
             {
                 DateInfo = new DateTime(DateInfo.Year + 1, DateInfo.Month, DateInfo.Day - 1, DateInfo.Hour, DateInfo.Minute, 0, new GregorianCalendar());
