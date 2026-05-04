@@ -4,7 +4,7 @@ A C# Windows Event Planner application.
 
 ## Authors
 
-### Ari Arkham, Jacob An, Jacob Medel, Areg Hovumyan
+### Ari Akram, Jacob An, Jacob Medel, Areg Hovumyan
 
 ## Features
 * Interactive calendar visualization via standard WinForms
