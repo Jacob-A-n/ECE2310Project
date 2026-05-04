@@ -1,4 +1,6 @@
-﻿using System;
+﻿// File improved by AI - original version had issues with event editing and tracking, and some code repetition. Refactored for better clarity and reliability, especially around event editing and the focus timer.
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
