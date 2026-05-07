@@ -14,14 +14,14 @@ References:
 - DateTime API: https://learn.microsoft.com/en-us/dotnet/api/system.datetime  
 
 ## 5.2 Third-Party Libraries
-This project does **not** use any third‑party packages or NuGet dependencies; it relies exclusively on the .NET Framework libraries listed above (see Windows Forms and DateTime references).
+This project does **not** use any third-party packages or NuGet dependencies; it relies exclusively on the .NET Framework libraries listed above (see Windows Forms and DateTime references).
 
 ## 5.3 Build and Run Instructions
-From the repository root (same steps as README):
+From the repository root (Windows PowerShell):
 1. Build:  
-   `dotnet build "ECE2310Project\ECE2310Project.csproj"`
+   `dotnet build "ECE2310Project/ECE2310Project.csproj"`
 2. Run the executable:  
-   `& "ECE2310Project\bin\Debug\ECE2310Project.exe"`
+   `& "ECE2310Project/bin/Debug/ECE2310Project.exe"`
 
 > Note: The project targets .NET Framework 4.7.2, which typically requires the Windows targeting pack on the build machine.
 
@@ -49,10 +49,7 @@ From the repository root (same steps as README):
 
 ## A. Setup Instructions (also in README)
 1. Install .NET Framework 4.7.2 targeting pack (required to build).  
-2. Build with:
-   - `dotnet build "ECE2310Project\ECE2310Project.csproj"`
-3. Run the app:
-   - `& "ECE2310Project\bin\Debug\ECE2310Project.exe"`
+2. Follow the build/run steps in **Section 5.3**.
 
 ## B. API Documentation
 No generated API documentation is included in this repository. Public APIs are minimal and primarily internal classes for UI/event management.
