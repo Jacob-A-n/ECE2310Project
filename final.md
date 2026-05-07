@@ -1,7 +1,7 @@
 # 5. Implementation Details
 
 ## 5.1 Languages, Frameworks, and Core Dependencies
-- **Language:** C# (project targets .NET Framework 4.7.2) based on the project file configuration. The repository does not document any migration plan.  
+- **Language:** C# (project targets .NET Framework 4.7.2) based on the project file configuration.  
 - **UI Framework:** Windows Forms for the desktop GUI and event-driven interactions.  
 - **Core .NET libraries used:**  
   - `System.Windows.Forms` for UI controls and dialogs (Windows Forms)  
@@ -48,7 +48,7 @@ From the repository root (Windows PowerShell):
 # 9. Appendices
 
 ## A. Setup Instructions (also in README)
-1. Install .NET Framework 4.7.2 targeting pack (required to build).  
+1. Install .NET Framework 4.7.2 targeting pack (required to build): https://aka.ms/msbuild/developerpacks  
 2. Follow the build/run steps in **Section 5.3**.
 
 ## B. API Documentation
