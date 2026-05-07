@@ -1,7 +1,7 @@
 # 5. Implementation Details
 
 ## 5.1 Languages, Frameworks, and Core Dependencies
-- **Language:** C# (project targets .NET Framework 4.7.2) based on the project file configuration.  
+- **Language:** C# (project targets .NET Framework 4.7.2) based on the project file configuration. The repository does not document any migration plan.  
 - **UI Framework:** Windows Forms for the desktop GUI and event-driven interactions.  
 - **Core .NET libraries used:**  
   - `System.Windows.Forms` for UI controls and dialogs (Windows Forms)  
@@ -33,7 +33,7 @@ From the repository root (Windows PowerShell):
 
 ## 5.5 Notable Algorithms & Data Structures (brief)
 - **Calendar grid generation (DrawCalendar.ArrangeCalendar)**  
-  - Uses fixed-size arrays of length **42** (6 weeks x 7 days) to render any month view.  
+  - Uses a fixed-size calendar grid of **42** slots (6 weeks x 7 days) to render any month view.  
   - Complexity: **O(42)** for array setup and fill, plus constant-time calendar lookups.  
 - **Event placement on calendar (Form.BuildCalendar)**  
   - For each event/recurring event, scans the 42-day grid to place labels.  
